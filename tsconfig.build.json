@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "nvidia-cloud-functions/*": ["dist/src/*"],
-      "nvidia-cloud-functions": ["dist/src/index.ts"],
+      "nvcf/*": ["dist/src/*"],
+      "nvcf": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

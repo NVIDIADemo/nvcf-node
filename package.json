@@ -1,8 +1,8 @@
 {
-  "name": "nvidia-cloud-functions",
+  "name": "nvcf",
   "version": "0.0.1-alpha.0",
-  "description": "The official TypeScript library for the Nvidia Cloud Functions API",
-  "author": "Nvidia Cloud Functions <dev-feedback@nvidia-cloud-functions.com>",
+  "description": "The official TypeScript library for the NVCF API",
+  "author": "NVCF <dev-feedback@nvidia.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -61,8 +61,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "nvidia-cloud-functions": ".",
-    "nvidia-cloud-functions/*": "./src/*"
+    "nvcf": ".",
+    "nvcf/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {

@@ -9,9 +9,14 @@ import * as API from './resources/index';
 
 export interface ClientOptions {
   /**
+   * Defaults to process.env['NVCF_AUTH_TOKEN'].
+   */
+  authToken?: string | undefined;
+
+  /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'].
+   * Defaults to process.env['NVCF_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -66,15 +71,18 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Nvidia Cloud Functions API.
+ * API Client for interfacing with the NVCF API.
  */
-export class NvidiaCloudFunctions extends Core.APIClient {
+export class NVCF extends Core.APIClient {
+  authToken: string;
+
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Nvidia Cloud Functions API.
+   * API Client for interfacing with the NVCF API.
    *
-   * @param {string} [opts.baseURL=process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'] ?? https://api.nvcf.nvidia.com] - Override the default base URL for the API.
+   * @param {string | undefined} [opts.authToken=process.env['NVCF_AUTH_TOKEN'] ?? undefined]
+   * @param {string} [opts.baseURL=process.env['NVCF_BASE_URL'] ?? https://api.nvcf.nvidia.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -82,8 +90,19 @@ export class NvidiaCloudFunctions extends Core.APIClient {
    * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
-  constructor({ baseURL = Core.readEnv('NVIDIA_CLOUD_FUNCTIONS_BASE_URL'), ...opts }: ClientOptions = {}) {
+  constructor({
+    baseURL = Core.readEnv('NVCF_BASE_URL'),
+    authToken = Core.readEnv('NVCF_AUTH_TOKEN'),
+    ...opts
+  }: ClientOptions = {}) {
+    if (authToken === undefined) {
+      throw new Errors.NVCFError(
+        "The NVCF_AUTH_TOKEN environment variable is missing or empty; either provide it, or instantiate the NVCF client with an authToken option, like new NVCF({ authToken: 'My Auth Token' }).",
+      );
+    }
+
     const options: ClientOptions = {
+      authToken,
       ...opts,
       baseURL: baseURL || `https://api.nvcf.nvidia.com`,
     };
@@ -97,6 +116,8 @@ export class NvidiaCloudFunctions extends Core.APIClient {
     });
 
     this._options = options;
+
+    this.authToken = authToken;
   }
 
   userSecretManagement: API.UserSecretManagement = new API.UserSecretManagement(this);
@@ -104,14 +125,14 @@ export class NvidiaCloudFunctions extends Core.APIClient {
   functionDeployment: API.FunctionDeployment = new API.FunctionDeployment(this);
   functionInvocation: API.FunctionInvocation = new API.FunctionInvocation(this);
   envelopeFunctionInvocation: API.EnvelopeFunctionInvocation = new API.EnvelopeFunctionInvocation(this);
-  nvcf: API.Nvcf = new API.Nvcf(this);
+  nvcf: API.NVCF = new API.NVCF(this);
   assets: API.Assets = new API.Assets(this);
   authorizations: API.Authorizations = new API.Authorizations(this);
   queues: API.Queues = new API.Queues(this);
   pexec: API.Pexec = new API.Pexec(this);
   clusterGroupsAndGPUs: API.ClusterGroupsAndGPUs = new API.ClusterGroupsAndGPUs(this);
-  clientManagementForNvidiaSuperAdmins: API.ClientManagementForNvidiaSuperAdmins =
-    new API.ClientManagementForNvidiaSuperAdmins(this);
+  clientManagementForNVIDIASuperAdmins: API.ClientManagementForNVIDIASuperAdmins =
+    new API.ClientManagementForNVIDIASuperAdmins(this);
   assetManagement: API.AssetManagement = new API.AssetManagement(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
@@ -125,14 +146,18 @@ export class NvidiaCloudFunctions extends Core.APIClient {
     };
   }
 
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
+    return { Authorization: `Bearer ${this.authToken}` };
+  }
+
   protected override stringifyQuery(query: Record<string, unknown>): string {
     return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
-  static NvidiaCloudFunctions = this;
+  static NVCF = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static NvidiaCloudFunctionsError = Errors.NvidiaCloudFunctionsError;
+  static NVCFError = Errors.NVCFError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -151,7 +176,7 @@ export class NvidiaCloudFunctions extends Core.APIClient {
 }
 
 export const {
-  NvidiaCloudFunctionsError,
+  NVCFError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
@@ -169,7 +194,7 @@ export const {
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace NvidiaCloudFunctions {
+export namespace NVCF {
   export import RequestOptions = Core.RequestOptions;
 
   export import UserSecretManagement = API.UserSecretManagement;
@@ -182,7 +207,7 @@ export namespace NvidiaCloudFunctions {
 
   export import EnvelopeFunctionInvocation = API.EnvelopeFunctionInvocation;
 
-  export import Nvcf = API.Nvcf;
+  export import NVCF = API.NVCF;
 
   export import Assets = API.Assets;
   export import CreateAssetResponse = API.CreateAssetResponse;
@@ -197,7 +222,7 @@ export namespace NvidiaCloudFunctions {
 
   export import ClusterGroupsAndGPUs = API.ClusterGroupsAndGPUs;
 
-  export import ClientManagementForNvidiaSuperAdmins = API.ClientManagementForNvidiaSuperAdmins;
+  export import ClientManagementForNVIDIASuperAdmins = API.ClientManagementForNVIDIASuperAdmins;
 
   export import AssetManagement = API.AssetManagement;
 
@@ -209,4 +234,4 @@ export namespace NvidiaCloudFunctions {
   export import ListFunctionsResponse = API.ListFunctionsResponse;
 }
 
-export default NvidiaCloudFunctions;
+export default NVCF;

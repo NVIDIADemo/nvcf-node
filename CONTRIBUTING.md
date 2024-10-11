@@ -55,12 +55,12 @@ cd nvidia-cloud-functions-node
 # With yarn
 yarn link
 cd ../my-package
-yarn link nvidia-cloud-functions
+yarn link nvcf
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global nvidia-cloud-functions
+pnpm link -—global nvcf
 ```
 
 ## Running tests

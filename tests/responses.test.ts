@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'nvidia-cloud-functions/core';
-import { Headers } from 'nvidia-cloud-functions/_shims/index';
+import { createResponseHeaders } from 'nvcf/core';
+import { Headers } from 'nvcf/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

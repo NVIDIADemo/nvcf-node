@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^nvidia-cloud-functions$': '<rootDir>/src/index.ts',
-    '^nvidia-cloud-functions/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^nvidia-cloud-functions/(.*)$': '<rootDir>/src/$1',
+    '^nvcf$': '<rootDir>/src/index.ts',
+    '^nvcf/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^nvcf/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

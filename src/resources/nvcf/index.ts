@@ -2,4 +2,4 @@
 
 export { Authorizations } from './authorizations/index';
 export { FunctionCreateParams, FunctionListParams, Functions } from './functions/index';
-export { Nvcf } from './nvcf';
+export { NVCF } from './nvcf';

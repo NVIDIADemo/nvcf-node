@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import NvidiaCloudFunctions from 'nvidia-cloud-functions';
-import { APIUserAbortError } from 'nvidia-cloud-functions';
-import { Headers } from 'nvidia-cloud-functions/core';
+import NVCF from 'nvcf';
+import { APIUserAbortError } from 'nvcf';
+import { Headers } from 'nvcf/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
@@ -20,9 +20,10 @@ describe('instantiate client', () => {
   });
 
   describe('defaultHeaders', () => {
-    const client = new NvidiaCloudFunctions({
+    const client = new NVCF({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
+      authToken: 'My Auth Token',
     });
 
     test('they are used in the request', () => {
@@ -51,33 +52,37 @@ describe('instantiate client', () => {
 
   describe('defaultQuery', () => {
     test('with null query params given', () => {
-      const client = new NvidiaCloudFunctions({
+      const client = new NVCF({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
+        authToken: 'My Auth Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
 
     test('multiple default query params', () => {
-      const client = new NvidiaCloudFunctions({
+      const client = new NVCF({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
+        authToken: 'My Auth Token',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
 
     test('overriding with `undefined`', () => {
-      const client = new NvidiaCloudFunctions({
+      const client = new NVCF({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
+        authToken: 'My Auth Token',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
   });
 
   test('custom fetch', async () => {
-    const client = new NvidiaCloudFunctions({
+    const client = new NVCF({
       baseURL: 'http://localhost:5000/',
+      authToken: 'My Auth Token',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -92,8 +97,9 @@ describe('instantiate client', () => {
   });
 
   test('custom signal', async () => {
-    const client = new NvidiaCloudFunctions({
+    const client = new NVCF({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+      authToken: 'My Auth Token',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -118,55 +124,69 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new NvidiaCloudFunctions({ baseURL: 'http://localhost:5000/custom/path/' });
+      const client = new NVCF({ baseURL: 'http://localhost:5000/custom/path/', authToken: 'My Auth Token' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new NvidiaCloudFunctions({ baseURL: 'http://localhost:5000/custom/path' });
+      const client = new NVCF({ baseURL: 'http://localhost:5000/custom/path', authToken: 'My Auth Token' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     afterEach(() => {
-      process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'] = undefined;
+      process.env['NVCF_BASE_URL'] = undefined;
     });
 
     test('explicit option', () => {
-      const client = new NvidiaCloudFunctions({ baseURL: 'https://example.com' });
+      const client = new NVCF({ baseURL: 'https://example.com', authToken: 'My Auth Token' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
-      process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'] = 'https://example.com/from_env';
-      const client = new NvidiaCloudFunctions({});
+      process.env['NVCF_BASE_URL'] = 'https://example.com/from_env';
+      const client = new NVCF({ authToken: 'My Auth Token' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
-      process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'] = ''; // empty
-      const client = new NvidiaCloudFunctions({});
+      process.env['NVCF_BASE_URL'] = ''; // empty
+      const client = new NVCF({ authToken: 'My Auth Token' });
       expect(client.baseURL).toEqual('https://api.nvcf.nvidia.com');
     });
 
     test('blank env variable', () => {
-      process.env['NVIDIA_CLOUD_FUNCTIONS_BASE_URL'] = '  '; // blank
-      const client = new NvidiaCloudFunctions({});
+      process.env['NVCF_BASE_URL'] = '  '; // blank
+      const client = new NVCF({ authToken: 'My Auth Token' });
       expect(client.baseURL).toEqual('https://api.nvcf.nvidia.com');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new NvidiaCloudFunctions({ maxRetries: 4 });
+    const client = new NVCF({ maxRetries: 4, authToken: 'My Auth Token' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new NvidiaCloudFunctions({});
+    const client2 = new NVCF({ authToken: 'My Auth Token' });
     expect(client2.maxRetries).toEqual(2);
+  });
+
+  test('with environment variable arguments', () => {
+    // set options via env var
+    process.env['NVCF_AUTH_TOKEN'] = 'My Auth Token';
+    const client = new NVCF();
+    expect(client.authToken).toBe('My Auth Token');
+  });
+
+  test('with overriden environment variable arguments', () => {
+    // set options via env var
+    process.env['NVCF_AUTH_TOKEN'] = 'another My Auth Token';
+    const client = new NVCF({ authToken: 'My Auth Token' });
+    expect(client.authToken).toBe('My Auth Token');
   });
 });
 
 describe('request building', () => {
-  const client = new NvidiaCloudFunctions({});
+  const client = new NVCF({ authToken: 'My Auth Token' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -208,7 +228,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new NvidiaCloudFunctions({ timeout: 10, fetch: testFetch });
+    const client = new NVCF({ authToken: 'My Auth Token', timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -235,7 +255,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new NvidiaCloudFunctions({ fetch: testFetch });
+    const client = new NVCF({ authToken: 'My Auth Token', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -262,7 +282,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new NvidiaCloudFunctions({ fetch: testFetch });
+    const client = new NVCF({ authToken: 'My Auth Token', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);

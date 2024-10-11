@@ -1,15 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import NvidiaCloudFunctions from 'nvidia-cloud-functions';
+import NVCF from 'nvcf';
 import { Response } from 'node-fetch';
 
-const client = new NvidiaCloudFunctions({
+const client = new NVCF({
+  authToken: 'My Auth Token',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource clients', () => {
   test('retrieve', async () => {
-    const responsePromise = client.clientManagementForNvidiaSuperAdmins.clients.retrieve('clientId');
+    const responsePromise = client.clientManagementForNVIDIASuperAdmins.clients.retrieve('clientId');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,9 +23,9 @@ describe('resource clients', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.clientManagementForNvidiaSuperAdmins.clients.retrieve('clientId', {
+      client.clientManagementForNVIDIASuperAdmins.clients.retrieve('clientId', {
         path: '/_stainless_unknown_path',
       }),
-    ).rejects.toThrow(NvidiaCloudFunctions.NotFoundError);
+    ).rejects.toThrow(NVCF.NotFoundError);
   });
 });
