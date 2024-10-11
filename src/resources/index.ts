@@ -7,10 +7,10 @@ export { ClientManagementForNVIDIASuperAdmins } from './client-management-for-nv
 export { ClusterGroupsAndGPUs } from './cluster-groups-and-gpus/cluster-groups-and-gpus';
 export { CreateAssetResponse, ListAssetsResponse, AssetCreateParams, Assets } from './assets';
 export { EnvelopeFunctionInvocation } from './envelope-function-invocation/envelope-function-invocation';
+export { FunctionCreateParams, FunctionRetrieveAllParams, Functions } from './functions/functions';
 export { FunctionDeployment } from './function-deployment/function-deployment';
 export { FunctionInvocation } from './function-invocation/function-invocation';
 export { FunctionManagement } from './function-management/function-management';
-export { NVCF } from './nvcf/nvcf';
 export { Pexec } from './pexec/pexec';
 export { Queues } from './queues/queues';
 export { UserSecretManagement } from './user-secret-management/user-secret-management';
