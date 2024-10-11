@@ -9,6 +9,8 @@ export class Authorizations extends APIResource {
 
 export namespace Authorizations {
   export import Functions = FunctionsAPI.Functions;
+  export import ListAuthorizedPartiesResponse = FunctionsAPI.ListAuthorizedPartiesResponse;
   export import FunctionAddParams = FunctionsAPI.FunctionAddParams;
+  export import FunctionAuthorizeParams = FunctionsAPI.FunctionAuthorizeParams;
   export import FunctionRemoveParams = FunctionsAPI.FunctionRemoveParams;
 }
