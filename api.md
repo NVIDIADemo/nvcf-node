@@ -105,43 +105,45 @@ Methods:
 
 - <code title="get /v2/nvcf/exec/status/{requestId}">client.envelopeFunctionInvocation.exec.status.<a href="./src/resources/envelope-function-invocation/exec/status.ts">retrieve</a>(requestId) -> InvokeFunctionResponse</code>
 
-# NVCF
-
-## Functions
+# Functions
 
 Methods:
 
-- <code title="post /v2/nvcf/functions">client.nvcf.functions.<a href="./src/resources/nvcf/functions/functions.ts">create</a>({ ...params }) -> CreateFunctionResponse</code>
-- <code title="get /v2/nvcf/functions">client.nvcf.functions.<a href="./src/resources/nvcf/functions/functions.ts">retrieveAll</a>({ ...params }) -> FunctionsResponse</code>
+- <code title="post /v2/nvcf/functions">client.functions.<a href="./src/resources/functions/functions.ts">create</a>({ ...params }) -> CreateFunctionResponse</code>
+- <code title="get /v2/nvcf/functions">client.functions.<a href="./src/resources/functions/functions.ts">retrieveAll</a>({ ...params }) -> FunctionsResponse</code>
+
+## Versions
+
+Methods:
+
+- <code title="post /v2/nvcf/functions/{functionId}/versions">client.functions.versions.<a href="./src/resources/functions/versions.ts">create</a>(functionId, { ...params }) -> CreateFunctionResponse</code>
+- <code title="get /v2/nvcf/functions/{functionId}/versions">client.functions.versions.<a href="./src/resources/functions/versions.ts">retrieveAll</a>(functionId) -> FunctionsResponse</code>
+
+# Authorizations
+
+## Functions
+
+Types:
+
+- <code><a href="./src/resources/authorizations/functions/functions.ts">ListAuthorizedPartiesResponse</a></code>
+
+Methods:
+
+- <code title="delete /v2/nvcf/authorizations/functions/{functionId}">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">delete</a>(functionId) -> AuthorizedParties</code>
+- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/add">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">add</a>(functionId, { ...params }) -> AuthorizedParties</code>
+- <code title="post /v2/nvcf/authorizations/functions/{functionId}">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">authorize</a>(functionId, { ...params }) -> AuthorizedParties</code>
+- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/remove">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">remove</a>(functionId, { ...params }) -> AuthorizedParties</code>
+- <code title="get /v2/nvcf/authorizations/functions/{functionId}">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">retrieveAll</a>(functionId) -> ListAuthorizedPartiesResponse</code>
 
 ### Versions
 
 Methods:
 
-- <code title="post /v2/nvcf/functions/{functionId}/versions">client.nvcf.functions.versions.<a href="./src/resources/nvcf/functions/versions.ts">create</a>(functionId, { ...params }) -> CreateFunctionResponse</code>
-- <code title="get /v2/nvcf/functions/{functionId}/versions">client.nvcf.functions.versions.<a href="./src/resources/nvcf/functions/versions.ts">retrieveAll</a>(functionId) -> FunctionsResponse</code>
-
-## Authorizations
-
-### Functions
-
-Types:
-
-- <code><a href="./src/resources/nvcf/authorizations/functions/functions.ts">ListAuthorizedPartiesResponse</a></code>
-
-Methods:
-
-- <code title="delete /v2/nvcf/authorizations/functions/{functionId}">client.nvcf.authorizations.functions.<a href="./src/resources/nvcf/authorizations/functions/functions.ts">delete</a>(functionId) -> AuthorizedParties</code>
-- <code title="post /v2/nvcf/authorizations/functions/{functionId}">client.nvcf.authorizations.functions.<a href="./src/resources/nvcf/authorizations/functions/functions.ts">authorize</a>(functionId, { ...params }) -> AuthorizedParties</code>
-- <code title="get /v2/nvcf/authorizations/functions/{functionId}">client.nvcf.authorizations.functions.<a href="./src/resources/nvcf/authorizations/functions/functions.ts">retrieveAll</a>(functionId) -> ListAuthorizedPartiesResponse</code>
-
-#### Versions
-
-Methods:
-
-- <code title="get /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.nvcf.authorizations.functions.versions.<a href="./src/resources/nvcf/authorizations/functions/versions.ts">retrieve</a>(functionId, functionVersionId) -> AuthorizedParties</code>
-- <code title="delete /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.nvcf.authorizations.functions.versions.<a href="./src/resources/nvcf/authorizations/functions/versions.ts">delete</a>(functionId, functionVersionId) -> AuthorizedParties</code>
-- <code title="post /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.nvcf.authorizations.functions.versions.<a href="./src/resources/nvcf/authorizations/functions/versions.ts">authorize</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
+- <code title="get /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">retrieve</a>(functionId, functionVersionId) -> AuthorizedParties</code>
+- <code title="delete /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">delete</a>(functionId, functionVersionId) -> AuthorizedParties</code>
+- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/add">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">add</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
+- <code title="post /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">authorize</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
+- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/remove">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">remove</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
 
 # Assets
 
@@ -154,22 +156,6 @@ Methods:
 
 - <code title="post /v2/nvcf/assets">client.assets.<a href="./src/resources/assets.ts">create</a>({ ...params }) -> CreateAssetResponse</code>
 - <code title="get /v2/nvcf/assets">client.assets.<a href="./src/resources/assets.ts">retrieveAll</a>() -> ListAssetsResponse</code>
-
-# Authorizations
-
-## Functions
-
-Methods:
-
-- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/add">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">add</a>(functionId, { ...params }) -> AuthorizedParties</code>
-- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/remove">client.authorizations.functions.<a href="./src/resources/authorizations/functions/functions.ts">remove</a>(functionId, { ...params }) -> AuthorizedParties</code>
-
-### Versions
-
-Methods:
-
-- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/add">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">add</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
-- <code title="patch /v2/nvcf/authorizations/functions/{functionId}/versions/{functionVersionId}/remove">client.authorizations.functions.versions.<a href="./src/resources/authorizations/functions/versions.ts">remove</a>(functionId, functionVersionId, { ...params }) -> AuthorizedParties</code>
 
 # Queues
 
