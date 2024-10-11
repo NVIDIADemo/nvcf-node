@@ -102,7 +102,7 @@ Methods:
 
 - <code title="get /v2/nvcf/exec/status/{requestId}">client.envelopeFunctionInvocation.exec.status.<a href="./src/resources/envelope-function-invocation/exec/status.ts">retrieve</a>(requestId) -> InvokeFunctionResponse</code>
 
-# Nvcf
+# NVCF
 
 ## Functions
 
@@ -216,7 +216,7 @@ Methods:
 
 - <code title="get /v2/nvcf/clusterGroups">client.clusterGroupsAndGPUs.clusterGroups.<a href="./src/resources/cluster-groups-and-gpus/cluster-groups.ts">list</a>() -> ClusterGroupsResponse</code>
 
-# ClientManagementForNvidiaSuperAdmins
+# ClientManagementForNVIDIASuperAdmins
 
 ## Clients
 
@@ -226,7 +226,7 @@ Types:
 
 Methods:
 
-- <code title="get /v2/nvcf/clients/{clientId}">client.clientManagementForNvidiaSuperAdmins.clients.<a href="./src/resources/client-management-for-nvidia-super-admins/clients.ts">retrieve</a>(clientId) -> ClientRetrieveResponse</code>
+- <code title="get /v2/nvcf/clients/{clientId}">client.clientManagementForNVIDIASuperAdmins.clients.<a href="./src/resources/client-management-for-nvidia-super-admins/clients.ts">retrieve</a>(clientId) -> ClientRetrieveResponse</code>
 
 # AssetManagement
 

@@ -3,11 +3,11 @@
 import { APIResource } from '../../resource';
 import * as ClientsAPI from './clients';
 
-export class ClientManagementForNvidiaSuperAdmins extends APIResource {
+export class ClientManagementForNVIDIASuperAdmins extends APIResource {
   clients: ClientsAPI.Clients = new ClientsAPI.Clients(this._client);
 }
 
-export namespace ClientManagementForNvidiaSuperAdmins {
+export namespace ClientManagementForNVIDIASuperAdmins {
   export import Clients = ClientsAPI.Clients;
   export import ClientRetrieveResponse = ClientsAPI.ClientRetrieveResponse;
 }

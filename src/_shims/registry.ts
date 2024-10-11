@@ -42,13 +42,11 @@ export let isFsReadStream: Shims['isFsReadStream'] | undefined = undefined;
 export function setShims(shims: Shims, options: { auto: boolean } = { auto: false }) {
   if (auto) {
     throw new Error(
-      `you must \`import 'nvidia-cloud-functions/shims/${shims.kind}'\` before importing anything else from nvidia-cloud-functions`,
+      `you must \`import 'nvcf/shims/${shims.kind}'\` before importing anything else from nvcf`,
     );
   }
   if (kind) {
-    throw new Error(
-      `can't \`import 'nvidia-cloud-functions/shims/${shims.kind}'\` after \`import 'nvidia-cloud-functions/shims/${kind}'\``,
-    );
+    throw new Error(`can't \`import 'nvcf/shims/${shims.kind}'\` after \`import 'nvcf/shims/${kind}'\``);
   }
   auto = options.auto;
   kind = shims.kind;

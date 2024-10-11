@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'nvidia-cloud-functions/shims/node'
- *   import 'nvidia-cloud-functions/shims/web'
+ *   import 'nvcf/shims/node'
+ *   import 'nvcf/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

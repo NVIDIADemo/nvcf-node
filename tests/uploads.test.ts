@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'nvidia-cloud-functions/uploads';
-import { File } from 'nvidia-cloud-functions/_shims/index';
+import { toFile, type ResponseLike } from 'nvcf/uploads';
+import { File } from 'nvcf/_shims/index';
 
 class MyClass {
   name: string = 'foo';

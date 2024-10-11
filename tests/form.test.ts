@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'nvidia-cloud-functions/core';
-import { Blob } from 'nvidia-cloud-functions/_shims/index';
-import { toFile } from 'nvidia-cloud-functions';
+import { multipartFormRequestOptions, createForm } from 'nvcf/core';
+import { Blob } from 'nvcf/_shims/index';
+import { toFile } from 'nvcf';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

@@ -2,9 +2,9 @@
 
 import { castToError, Headers } from './core';
 
-export class NvidiaCloudFunctionsError extends Error {}
+export class NVCFError extends Error {}
 
-export class APIError extends NvidiaCloudFunctionsError {
+export class APIError extends NVCFError {
   readonly status: number | undefined;
   readonly headers: Headers | undefined;
   readonly error: Object | undefined;

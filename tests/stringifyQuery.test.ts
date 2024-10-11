@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { NvidiaCloudFunctions } from 'nvidia-cloud-functions';
+import { NVCF } from 'nvcf';
 
-const { stringifyQuery } = NvidiaCloudFunctions.prototype as any;
+const { stringifyQuery } = NVCF.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [

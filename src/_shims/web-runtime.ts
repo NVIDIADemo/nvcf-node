@@ -9,9 +9,9 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
   const recommendation =
     manuallyImported ?
       `You may need to use polyfills`
-    : `Add one of these imports before your first \`import … from 'nvidia-cloud-functions'\`:
-- \`import 'nvidia-cloud-functions/shims/node'\` (if you're running on Node)
-- \`import 'nvidia-cloud-functions/shims/web'\` (otherwise)
+    : `Add one of these imports before your first \`import … from 'nvcf'\`:
+- \`import 'nvcf/shims/node'\` (if you're running on Node)
+- \`import 'nvcf/shims/web'\` (otherwise)
 `;
 
   let _fetch, _Request, _Response, _Headers;
