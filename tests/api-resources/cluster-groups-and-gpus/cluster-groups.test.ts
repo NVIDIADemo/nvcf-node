@@ -9,8 +9,8 @@ const client = new NVCF({
 });
 
 describe('resource clusterGroups', () => {
-  test('list', async () => {
-    const responsePromise = client.clusterGroupsAndGPUs.clusterGroups.list();
+  test('retrieveAll', async () => {
+    const responsePromise = client.clusterGroupsAndGPUs.clusterGroups.retrieveAll();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,10 +20,10 @@ describe('resource clusterGroups', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
+  test('retrieveAll: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.clusterGroupsAndGPUs.clusterGroups.list({ path: '/_stainless_unknown_path' }),
+      client.clusterGroupsAndGPUs.clusterGroups.retrieveAll({ path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(NVCF.NotFoundError);
   });
 });

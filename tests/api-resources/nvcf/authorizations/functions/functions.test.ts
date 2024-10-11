@@ -9,26 +9,6 @@ const client = new NVCF({
 });
 
 describe('resource functions', () => {
-  test('list', async () => {
-    const responsePromise = client.nvcf.authorizations.functions.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.nvcf.authorizations.functions.list('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(NVCF.NotFoundError);
-  });
-
   test('delete', async () => {
     const responsePromise = client.nvcf.authorizations.functions.delete(
       '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
@@ -76,5 +56,27 @@ describe('resource functions', () => {
         ],
       },
     );
+  });
+
+  test('retrieveAll', async () => {
+    const responsePromise = client.nvcf.authorizations.functions.retrieveAll(
+      '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('retrieveAll: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.nvcf.authorizations.functions.retrieveAll('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(NVCF.NotFoundError);
   });
 });

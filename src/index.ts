@@ -226,12 +226,15 @@ export namespace NVCF {
 
   export import AssetManagement = API.AssetManagement;
 
-  export import AuthorizedPartiesResponse = API.AuthorizedPartiesResponse;
+  export import AuthorizedParties = API.AuthorizedParties;
+  export import AuthorizedPartyDTO = API.AuthorizedPartyDTO;
   export import CreateFunctionResponse = API.CreateFunctionResponse;
-  export import FunctionResponse = API.FunctionResponse;
-  export import GetQueuesResponse = API.GetQueuesResponse;
+  export import Function = API.Function;
+  export import FunctionDTO = API.FunctionDTO;
+  export import FunctionsResponse = API.FunctionsResponse;
+  export import HealthDTO = API.HealthDTO;
   export import InvokeFunctionResponse = API.InvokeFunctionResponse;
-  export import ListFunctionsResponse = API.ListFunctionsResponse;
+  export import Queues = API.Queues;
 }
 
 export default NVCF;

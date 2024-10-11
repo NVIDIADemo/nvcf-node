@@ -75,18 +75,18 @@ export class Versions extends APIResource {
     functionVersionId: string,
     params?: VersionDeleteParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.FunctionResponse>;
+  ): Core.APIPromise<Shared.Function>;
   delete(
     functionId: string,
     functionVersionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.FunctionResponse>;
+  ): Core.APIPromise<Shared.Function>;
   delete(
     functionId: string,
     functionVersionId: string,
     params: VersionDeleteParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.FunctionResponse> {
+  ): Core.APIPromise<Shared.Function> {
     if (isRequestOptions(params)) {
       return this.delete(functionId, functionVersionId, {}, params);
     }

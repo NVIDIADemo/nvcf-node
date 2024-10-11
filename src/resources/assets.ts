@@ -19,7 +19,7 @@ export class Assets extends APIResource {
    * List assets owned by the current NVIDIA Cloud Account. Requires either a bearer
    * token or an api-key with invoke_function scope in the HTTP Authorization header.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ListAssetsResponse> {
+  retrieveAll(options?: Core.RequestOptions): Core.APIPromise<ListAssetsResponse> {
     return this._client.get('/v2/nvcf/assets', options);
   }
 }

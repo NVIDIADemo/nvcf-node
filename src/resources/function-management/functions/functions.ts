@@ -13,6 +13,6 @@ export namespace Functions {
   export import Versions = VersionsAPI.Versions;
   export import VersionUpdateParams = VersionsAPI.VersionUpdateParams;
   export import IDs = IDsAPI.IDs;
-  export import ListFunctionIDsResponse = IDsAPI.ListFunctionIDsResponse;
-  export import IDListParams = IDsAPI.IDListParams;
+  export import IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
+  export import IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
 }

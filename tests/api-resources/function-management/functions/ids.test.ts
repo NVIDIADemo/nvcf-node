@@ -9,8 +9,8 @@ const client = new NVCF({
 });
 
 describe('resource ids', () => {
-  test('list', async () => {
-    const responsePromise = client.functionManagement.functions.ids.list();
+  test('retrieveAll', async () => {
+    const responsePromise = client.functionManagement.functions.ids.retrieveAll();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -20,17 +20,17 @@ describe('resource ids', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
+  test('retrieveAll: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.functionManagement.functions.ids.list({ path: '/_stainless_unknown_path' }),
+      client.functionManagement.functions.ids.retrieveAll({ path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(NVCF.NotFoundError);
   });
 
-  test('list: request options and params are passed correctly', async () => {
+  test('retrieveAll: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.functionManagement.functions.ids.list(
+      client.functionManagement.functions.ids.retrieveAll(
         { visibility: ['authorized'] },
         { path: '/_stainless_unknown_path' },
       ),
