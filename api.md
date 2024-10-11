@@ -10,7 +10,7 @@ Types:
 - <code><a href="./src/resources/shared.ts">FunctionsResponse</a></code>
 - <code><a href="./src/resources/shared.ts">HealthDTO</a></code>
 - <code><a href="./src/resources/shared.ts">InvokeFunctionResponse</a></code>
-- <code><a href="./src/resources/shared.ts">Queues</a></code>
+- <code><a href="./src/resources/shared.ts">QueuesResponse</a></code>
 
 # UserSecretManagement
 
@@ -177,13 +177,13 @@ Methods:
 
 Methods:
 
-- <code title="get /v2/nvcf/queues/functions/{functionId}">client.queues.functions.<a href="./src/resources/queues/functions/functions.ts">retrieveAll</a>(functionId) -> Queues</code>
+- <code title="get /v2/nvcf/queues/functions/{functionId}">client.queues.functions.<a href="./src/resources/queues/functions/functions.ts">retrieveAll</a>(functionId) -> QueuesResponse</code>
 
 ### Versions
 
 Methods:
 
-- <code title="get /v2/nvcf/queues/functions/{functionId}/versions/{versionId}">client.queues.functions.versions.<a href="./src/resources/queues/functions/versions.ts">retrieveAll</a>(functionId, versionId) -> Queues</code>
+- <code title="get /v2/nvcf/queues/functions/{functionId}/versions/{versionId}">client.queues.functions.versions.<a href="./src/resources/queues/functions/versions.ts">retrieveAll</a>(functionId, versionId) -> QueuesResponse</code>
 
 ## Position
 
