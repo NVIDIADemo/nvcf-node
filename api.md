@@ -109,7 +109,7 @@ Methods:
 
 Methods:
 
-- <code title="post /v2/nvcf/functions">client.functions.<a href="./src/resources/functions/functions.ts">create</a>({ ...params }) -> CreateFunctionResponse</code>
+- <code title="post /v2/nvcf/functions">client.functions.<a href="./src/resources/functions/functions.ts">create</a>({ ...params }) -> FunctionDTO</code>
 - <code title="get /v2/nvcf/functions">client.functions.<a href="./src/resources/functions/functions.ts">retrieveAll</a>({ ...params }) -> FunctionsResponse</code>
 
 ## Versions
