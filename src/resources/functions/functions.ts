@@ -14,11 +14,12 @@ export class Functions extends APIResource {
    * Creates a new function within the authenticated NVIDIA Cloud Account. Requires a
    * bearer token with 'register_function' scope in the HTTP Authorization header.
    */
-  create(
-    body: FunctionCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.CreateFunctionResponse> {
-    return this._client.post('/v2/nvcf/functions', { body, ...options });
+  create(body: FunctionCreateParams, options?: Core.RequestOptions): Core.APIPromise<Shared.FunctionDTO> {
+    return (
+      this._client.post('/v2/nvcf/functions', { body, ...options }) as Core.APIPromise<{
+        function: Shared.FunctionDTO;
+      }>
+    )._thenUnwrap((obj) => obj.function);
   }
 
   /**
