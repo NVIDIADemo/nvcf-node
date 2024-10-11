@@ -26,17 +26,17 @@ export class Functions extends APIResource {
    * Requires either a bearer token or an api-key with 'list_functions' or
    * 'list_functions_details' scopes in the HTTP Authorization header.
    */
-  list(
-    query?: FunctionListParams,
+  retrieveAll(
+    query?: FunctionRetrieveAllParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.ListFunctionsResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<Shared.ListFunctionsResponse>;
-  list(
-    query: FunctionListParams | Core.RequestOptions = {},
+  ): Core.APIPromise<Shared.FunctionsResponse>;
+  retrieveAll(options?: Core.RequestOptions): Core.APIPromise<Shared.FunctionsResponse>;
+  retrieveAll(
+    query: FunctionRetrieveAllParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.ListFunctionsResponse> {
+  ): Core.APIPromise<Shared.FunctionsResponse> {
     if (isRequestOptions(query)) {
-      return this.list({}, query);
+      return this.retrieveAll({}, query);
     }
     return this._client.get('/v2/nvcf/functions', { query, ...options });
   }
@@ -88,7 +88,7 @@ export interface FunctionCreateParams {
   /**
    * Data Transfer Object(DTO) representing a function ne
    */
-  health?: FunctionCreateParams.Health;
+  health?: Shared.HealthDTO;
 
   /**
    * Health endpoint for the container or the helmChart
@@ -149,36 +149,6 @@ export namespace FunctionCreateParams {
   }
 
   /**
-   * Data Transfer Object(DTO) representing a function ne
-   */
-  export interface Health {
-    /**
-     * Expected return status code considered as successful.
-     */
-    expectedStatusCode: number;
-
-    /**
-     * Port number where the health listener is running
-     */
-    port: number;
-
-    /**
-     * HTTP/gPRC protocol type for health endpoint
-     */
-    protocol: 'HTTP' | 'gRPC';
-
-    /**
-     * ISO 8601 duration string in PnDTnHnMn.nS format
-     */
-    timeout: string;
-
-    /**
-     * Health endpoint for the container or the helmChart
-     */
-    uri: string;
-  }
-
-  /**
    * Data Transfer Object(DTO) representing an artifact
    */
   export interface Model {
@@ -234,7 +204,7 @@ export namespace FunctionCreateParams {
   }
 }
 
-export interface FunctionListParams {
+export interface FunctionRetrieveAllParams {
   /**
    * Query param 'visibility' indicates the kind of functions to be included in the
    * response.
@@ -244,7 +214,7 @@ export interface FunctionListParams {
 
 export namespace Functions {
   export import FunctionCreateParams = FunctionsAPI.FunctionCreateParams;
-  export import FunctionListParams = FunctionsAPI.FunctionListParams;
+  export import FunctionRetrieveAllParams = FunctionsAPI.FunctionRetrieveAllParams;
   export import Versions = VersionsAPI.Versions;
   export import VersionCreateParams = VersionsAPI.VersionCreateParams;
 }

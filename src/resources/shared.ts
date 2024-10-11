@@ -1,16 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import * as Shared from './shared';
+
 /**
  * Parties authorized to invoke function
  */
-export interface AuthorizedPartiesResponse {
+export interface AuthorizedParties {
   /**
    * Data Transfer Object(DTO) representing a function with authorized accounts
    */
-  function: AuthorizedPartiesResponse.Function;
+  function: AuthorizedParties.Function;
 }
 
-export namespace AuthorizedPartiesResponse {
+export namespace AuthorizedParties {
   /**
    * Data Transfer Object(DTO) representing a function with authorized accounts
    */
@@ -28,30 +30,28 @@ export namespace AuthorizedPartiesResponse {
     /**
      * Authorized parties allowed to invoke the function
      */
-    authorizedParties?: Array<Function.AuthorizedParty>;
+    authorizedParties?: Array<Shared.AuthorizedPartyDTO>;
 
     /**
      * Function version id
      */
     versionId?: string;
   }
+}
 
-  export namespace Function {
-    /**
-     * Data Transfer Object(DTO) representing an authorized party.
-     */
-    export interface AuthorizedParty {
-      /**
-       * NVIDIA Cloud Account authorized to invoke the function
-       */
-      ncaId: string;
+/**
+ * Data Transfer Object(DTO) representing an authorized party.
+ */
+export interface AuthorizedPartyDTO {
+  /**
+   * NVIDIA Cloud Account authorized to invoke the function
+   */
+  ncaId: string;
 
-      /**
-       * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-       */
-      clientId?: string;
-    }
-  }
+  /**
+   * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
+   */
+  clientId?: string;
 }
 
 /**
@@ -61,629 +61,310 @@ export interface CreateFunctionResponse {
   /**
    * Data Transfer Object (DTO) representing a function
    */
-  function: CreateFunctionResponse.Function;
-}
-
-export namespace CreateFunctionResponse {
-  /**
-   * Data Transfer Object (DTO) representing a function
-   */
-  export interface Function {
-    /**
-     * Unique function id
-     */
-    id: string;
-
-    /**
-     * Function creation timestamp
-     */
-    createdAt: string;
-
-    /**
-     * Used to indicate a STREAMING function. Defaults to DEFAULT.
-     */
-    functionType: 'DEFAULT' | 'STREAMING';
-
-    /**
-     * Health endpoint for the container or helmChart
-     */
-    healthUri: string;
-
-    /**
-     * Function name
-     */
-    name: string;
-
-    /**
-     * NVIDIA Cloud Account Id
-     */
-    ncaId: string;
-
-    /**
-     * Function status
-     */
-    status: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
-
-    /**
-     * Unique function version id
-     */
-    versionId: string;
-
-    /**
-     * List of active instances for this function.
-     */
-    activeInstances?: Array<Function.ActiveInstance>;
-
-    /**
-     * Invocation request body format
-     */
-    apiBodyFormat?: 'PREDICT_V2' | 'CUSTOM';
-
-    /**
-     * Args used to launch the container
-     */
-    containerArgs?: string;
-
-    /**
-     * Environment settings used to launch the container
-     */
-    containerEnvironment?: Array<Function.ContainerEnvironment>;
-
-    /**
-     * Optional custom container
-     */
-    containerImage?: string;
-
-    /**
-     * Function/version description
-     */
-    description?: string;
-
-    /**
-     * Data Transfer Object(DTO) representing a function ne
-     */
-    health?: Function.Health;
-
-    /**
-     * Optional Helm Chart
-     */
-    helmChart?: string;
-
-    /**
-     * Helm Chart Service Name specified only when helmChart property is specified
-     */
-    helmChartServiceName?: string;
-
-    /**
-     * Optional port number where the inference listener is running - defaults to 8000
-     * for Triton
-     */
-    inferencePort?: number;
-
-    /**
-     * Entrypoint for invoking the container to process requests
-     */
-    inferenceUrl?: string;
-
-    /**
-     * Optional set of models
-     */
-    models?: Array<Function.Model>;
-
-    /**
-     * Indicates whether the function is owned by another account. If the account that
-     * is being used to lookup functions happens to be authorized to invoke/list this
-     * function which is owned by a different account, then this field is set to true
-     * and ncaId will contain the id of the account that owns the function. Otherwise,
-     * this field is not set as it defaults to false.
-     */
-    ownedByDifferentAccount?: boolean;
-
-    /**
-     * Optional set of resources.
-     */
-    resources?: Array<Function.Resource>;
-
-    /**
-     * Optional secret names
-     */
-    secrets?: Array<string>;
-
-    /**
-     * Optional set of tags. Maximum allowed number of tags per function is 64. Maximum
-     * length of each tag is 128 chars.
-     */
-    tags?: Array<string>;
-  }
-
-  export namespace Function {
-    /**
-     * Data Transfer Object(DTO) representing a spot instance
-     */
-    export interface ActiveInstance {
-      /**
-       * Backend where the instance is running
-       */
-      backend?: string;
-
-      /**
-       * Function executing on the instance
-       */
-      functionId?: string;
-
-      /**
-       * Function version executing on the instance
-       */
-      functionVersionId?: string;
-
-      /**
-       * GPU name powering the instance
-       */
-      gpu?: string;
-
-      /**
-       * Instance creation timestamp
-       */
-      instanceCreatedAt?: string;
-
-      /**
-       * Unique id of the instance
-       */
-      instanceId?: string;
-
-      /**
-       * Instance status
-       */
-      instanceStatus?: 'ACTIVE' | 'ERRORED' | 'PREEMPTED' | 'DELETED';
-
-      /**
-       * GPU instance-type powering the instance
-       */
-      instanceType?: string;
-
-      /**
-       * Instance's last updated timestamp
-       */
-      instanceUpdatedAt?: string;
-
-      /**
-       * Location such as zone name or region where the instance is running
-       */
-      location?: string;
-
-      /**
-       * NVIDIA Cloud Account Id that owns the function running on the instance
-       */
-      ncaId?: string;
-
-      /**
-       * SIS request-id used to launch this instance
-       */
-      sisRequestId?: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing a container environment entry
-     */
-    export interface ContainerEnvironment {
-      /**
-       * Container environment key
-       */
-      key: string;
-
-      /**
-       * Container environment value
-       */
-      value: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing a function ne
-     */
-    export interface Health {
-      /**
-       * Expected return status code considered as successful.
-       */
-      expectedStatusCode: number;
-
-      /**
-       * Port number where the health listener is running
-       */
-      port: number;
-
-      /**
-       * HTTP/gPRC protocol type for health endpoint
-       */
-      protocol: 'HTTP' | 'gRPC';
-
-      /**
-       * ISO 8601 duration string in PnDTnHnMn.nS format
-       */
-      timeout: string;
-
-      /**
-       * Health endpoint for the container or the helmChart
-       */
-      uri: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Model {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Resource {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
-  }
+  function: FunctionDTO;
 }
 
 /**
  * Response body with function details
  */
-export interface FunctionResponse {
+export interface Function {
   /**
    * Data Transfer Object (DTO) representing a function
    */
-  function: FunctionResponse.Function;
+  function: FunctionDTO;
 }
 
-export namespace FunctionResponse {
+/**
+ * Data Transfer Object (DTO) representing a function
+ */
+export interface FunctionDTO {
   /**
-   * Data Transfer Object (DTO) representing a function
+   * Unique function id
    */
-  export interface Function {
+  id: string;
+
+  /**
+   * Function creation timestamp
+   */
+  createdAt: string;
+
+  /**
+   * Used to indicate a STREAMING function. Defaults to DEFAULT.
+   */
+  functionType: 'DEFAULT' | 'STREAMING';
+
+  /**
+   * Health endpoint for the container or helmChart
+   */
+  healthUri: string;
+
+  /**
+   * Function name
+   */
+  name: string;
+
+  /**
+   * NVIDIA Cloud Account Id
+   */
+  ncaId: string;
+
+  /**
+   * Function status
+   */
+  status: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
+
+  /**
+   * Unique function version id
+   */
+  versionId: string;
+
+  /**
+   * List of active instances for this function.
+   */
+  activeInstances?: Array<FunctionDTO.ActiveInstance>;
+
+  /**
+   * Invocation request body format
+   */
+  apiBodyFormat?: 'PREDICT_V2' | 'CUSTOM';
+
+  /**
+   * Args used to launch the container
+   */
+  containerArgs?: string;
+
+  /**
+   * Environment settings used to launch the container
+   */
+  containerEnvironment?: Array<FunctionDTO.ContainerEnvironment>;
+
+  /**
+   * Optional custom container
+   */
+  containerImage?: string;
+
+  /**
+   * Function/version description
+   */
+  description?: string;
+
+  /**
+   * Data Transfer Object(DTO) representing a function ne
+   */
+  health?: HealthDTO;
+
+  /**
+   * Optional Helm Chart
+   */
+  helmChart?: string;
+
+  /**
+   * Helm Chart Service Name specified only when helmChart property is specified
+   */
+  helmChartServiceName?: string;
+
+  /**
+   * Optional port number where the inference listener is running - defaults to 8000
+   * for Triton
+   */
+  inferencePort?: number;
+
+  /**
+   * Entrypoint for invoking the container to process requests
+   */
+  inferenceUrl?: string;
+
+  /**
+   * Optional set of models
+   */
+  models?: Array<FunctionDTO.Model>;
+
+  /**
+   * Indicates whether the function is owned by another account. If the account that
+   * is being used to lookup functions happens to be authorized to invoke/list this
+   * function which is owned by a different account, then this field is set to true
+   * and ncaId will contain the id of the account that owns the function. Otherwise,
+   * this field is not set as it defaults to false.
+   */
+  ownedByDifferentAccount?: boolean;
+
+  /**
+   * Optional set of resources.
+   */
+  resources?: Array<FunctionDTO.Resource>;
+
+  /**
+   * Optional secret names
+   */
+  secrets?: Array<string>;
+
+  /**
+   * Optional set of tags. Maximum allowed number of tags per function is 64. Maximum
+   * length of each tag is 128 chars.
+   */
+  tags?: Array<string>;
+}
+
+export namespace FunctionDTO {
+  /**
+   * Data Transfer Object(DTO) representing a spot instance
+   */
+  export interface ActiveInstance {
     /**
-     * Unique function id
+     * Backend where the instance is running
      */
-    id: string;
+    backend?: string;
 
     /**
-     * Function creation timestamp
+     * Function executing on the instance
      */
-    createdAt: string;
+    functionId?: string;
 
     /**
-     * Used to indicate a STREAMING function. Defaults to DEFAULT.
+     * Function version executing on the instance
      */
-    functionType: 'DEFAULT' | 'STREAMING';
+    functionVersionId?: string;
 
     /**
-     * Health endpoint for the container or helmChart
+     * GPU name powering the instance
      */
-    healthUri: string;
+    gpu?: string;
 
     /**
-     * Function name
+     * Instance creation timestamp
+     */
+    instanceCreatedAt?: string;
+
+    /**
+     * Unique id of the instance
+     */
+    instanceId?: string;
+
+    /**
+     * Instance status
+     */
+    instanceStatus?: 'ACTIVE' | 'ERRORED' | 'PREEMPTED' | 'DELETED';
+
+    /**
+     * GPU instance-type powering the instance
+     */
+    instanceType?: string;
+
+    /**
+     * Instance's last updated timestamp
+     */
+    instanceUpdatedAt?: string;
+
+    /**
+     * Location such as zone name or region where the instance is running
+     */
+    location?: string;
+
+    /**
+     * NVIDIA Cloud Account Id that owns the function running on the instance
+     */
+    ncaId?: string;
+
+    /**
+     * SIS request-id used to launch this instance
+     */
+    sisRequestId?: string;
+  }
+
+  /**
+   * Data Transfer Object(DTO) representing a container environment entry
+   */
+  export interface ContainerEnvironment {
+    /**
+     * Container environment key
+     */
+    key: string;
+
+    /**
+     * Container environment value
+     */
+    value: string;
+  }
+
+  /**
+   * Data Transfer Object(DTO) representing an artifact
+   */
+  export interface Model {
+    /**
+     * Artifact name
      */
     name: string;
 
     /**
-     * NVIDIA Cloud Account Id
+     * Artifact URI
      */
-    ncaId: string;
+    uri: string;
 
     /**
-     * Function status
+     * Artifact version
      */
-    status: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
-
-    /**
-     * Unique function version id
-     */
-    versionId: string;
-
-    /**
-     * List of active instances for this function.
-     */
-    activeInstances?: Array<Function.ActiveInstance>;
-
-    /**
-     * Invocation request body format
-     */
-    apiBodyFormat?: 'PREDICT_V2' | 'CUSTOM';
-
-    /**
-     * Args used to launch the container
-     */
-    containerArgs?: string;
-
-    /**
-     * Environment settings used to launch the container
-     */
-    containerEnvironment?: Array<Function.ContainerEnvironment>;
-
-    /**
-     * Optional custom container
-     */
-    containerImage?: string;
-
-    /**
-     * Function/version description
-     */
-    description?: string;
-
-    /**
-     * Data Transfer Object(DTO) representing a function ne
-     */
-    health?: Function.Health;
-
-    /**
-     * Optional Helm Chart
-     */
-    helmChart?: string;
-
-    /**
-     * Helm Chart Service Name specified only when helmChart property is specified
-     */
-    helmChartServiceName?: string;
-
-    /**
-     * Optional port number where the inference listener is running - defaults to 8000
-     * for Triton
-     */
-    inferencePort?: number;
-
-    /**
-     * Entrypoint for invoking the container to process requests
-     */
-    inferenceUrl?: string;
-
-    /**
-     * Optional set of models
-     */
-    models?: Array<Function.Model>;
-
-    /**
-     * Indicates whether the function is owned by another account. If the account that
-     * is being used to lookup functions happens to be authorized to invoke/list this
-     * function which is owned by a different account, then this field is set to true
-     * and ncaId will contain the id of the account that owns the function. Otherwise,
-     * this field is not set as it defaults to false.
-     */
-    ownedByDifferentAccount?: boolean;
-
-    /**
-     * Optional set of resources.
-     */
-    resources?: Array<Function.Resource>;
-
-    /**
-     * Optional secret names
-     */
-    secrets?: Array<string>;
-
-    /**
-     * Optional set of tags. Maximum allowed number of tags per function is 64. Maximum
-     * length of each tag is 128 chars.
-     */
-    tags?: Array<string>;
+    version: string;
   }
 
-  export namespace Function {
+  /**
+   * Data Transfer Object(DTO) representing an artifact
+   */
+  export interface Resource {
     /**
-     * Data Transfer Object(DTO) representing a spot instance
+     * Artifact name
      */
-    export interface ActiveInstance {
-      /**
-       * Backend where the instance is running
-       */
-      backend?: string;
-
-      /**
-       * Function executing on the instance
-       */
-      functionId?: string;
-
-      /**
-       * Function version executing on the instance
-       */
-      functionVersionId?: string;
-
-      /**
-       * GPU name powering the instance
-       */
-      gpu?: string;
-
-      /**
-       * Instance creation timestamp
-       */
-      instanceCreatedAt?: string;
-
-      /**
-       * Unique id of the instance
-       */
-      instanceId?: string;
-
-      /**
-       * Instance status
-       */
-      instanceStatus?: 'ACTIVE' | 'ERRORED' | 'PREEMPTED' | 'DELETED';
-
-      /**
-       * GPU instance-type powering the instance
-       */
-      instanceType?: string;
-
-      /**
-       * Instance's last updated timestamp
-       */
-      instanceUpdatedAt?: string;
-
-      /**
-       * Location such as zone name or region where the instance is running
-       */
-      location?: string;
-
-      /**
-       * NVIDIA Cloud Account Id that owns the function running on the instance
-       */
-      ncaId?: string;
-
-      /**
-       * SIS request-id used to launch this instance
-       */
-      sisRequestId?: string;
-    }
+    name: string;
 
     /**
-     * Data Transfer Object(DTO) representing a container environment entry
+     * Artifact URI
      */
-    export interface ContainerEnvironment {
-      /**
-       * Container environment key
-       */
-      key: string;
-
-      /**
-       * Container environment value
-       */
-      value: string;
-    }
+    uri: string;
 
     /**
-     * Data Transfer Object(DTO) representing a function ne
+     * Artifact version
      */
-    export interface Health {
-      /**
-       * Expected return status code considered as successful.
-       */
-      expectedStatusCode: number;
-
-      /**
-       * Port number where the health listener is running
-       */
-      port: number;
-
-      /**
-       * HTTP/gPRC protocol type for health endpoint
-       */
-      protocol: 'HTTP' | 'gRPC';
-
-      /**
-       * ISO 8601 duration string in PnDTnHnMn.nS format
-       */
-      timeout: string;
-
-      /**
-       * Health endpoint for the container or the helmChart
-       */
-      uri: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Model {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Resource {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
+    version: string;
   }
 }
 
 /**
- * Request queue details of all the functions with same id in an account
+ * Response body containing list of functions
  */
-export interface GetQueuesResponse {
+export interface FunctionsResponse {
   /**
-   * Function id
+   * List of functions
    */
-  functionId: string;
-
-  /**
-   * Details of all the queues associated with same named functions
-   */
-  queues: Array<GetQueuesResponse.Queue>;
+  functions: Array<FunctionDTO>;
 }
 
-export namespace GetQueuesResponse {
+/**
+ * Data Transfer Object(DTO) representing a function ne
+ */
+export interface HealthDTO {
   /**
-   * Data Transfer Object(DTO) representing a request queue for function version
+   * Expected return status code considered as successful.
    */
-  export interface Queue {
-    /**
-     * Function name
-     */
-    functionName: string;
+  expectedStatusCode: number;
 
-    /**
-     * Function status
-     */
-    functionStatus: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
+  /**
+   * Port number where the health listener is running
+   */
+  port: number;
 
-    /**
-     * Function version id
-     */
-    functionVersionId: string;
+  /**
+   * HTTP/gPRC protocol type for health endpoint
+   */
+  protocol: 'HTTP' | 'gRPC';
 
-    /**
-     * Approximate number of messages in the request queue
-     */
-    queueDepth?: number;
-  }
+  /**
+   * ISO 8601 duration string in PnDTnHnMn.nS format
+   */
+  timeout: string;
+
+  /**
+   * Health endpoint for the container or the helmChart
+   */
+  uri: string;
 }
 
 /**
@@ -723,296 +404,43 @@ export interface InvokeFunctionResponse {
 }
 
 /**
- * Response body containing list of functions
+ * Request queue details of all the functions with same id in an account
  */
-export interface ListFunctionsResponse {
+export interface Queues {
   /**
-   * List of functions
+   * Function id
    */
-  functions: Array<ListFunctionsResponse.Function>;
+  functionId: string;
+
+  /**
+   * Details of all the queues associated with same named functions
+   */
+  queues: Array<Queues.Queue>;
 }
 
-export namespace ListFunctionsResponse {
+export namespace Queues {
   /**
-   * Data Transfer Object (DTO) representing a function
+   * Data Transfer Object(DTO) representing a request queue for function version
    */
-  export interface Function {
-    /**
-     * Unique function id
-     */
-    id: string;
-
-    /**
-     * Function creation timestamp
-     */
-    createdAt: string;
-
-    /**
-     * Used to indicate a STREAMING function. Defaults to DEFAULT.
-     */
-    functionType: 'DEFAULT' | 'STREAMING';
-
-    /**
-     * Health endpoint for the container or helmChart
-     */
-    healthUri: string;
-
+  export interface Queue {
     /**
      * Function name
      */
-    name: string;
-
-    /**
-     * NVIDIA Cloud Account Id
-     */
-    ncaId: string;
+    functionName: string;
 
     /**
      * Function status
      */
-    status: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
+    functionStatus: 'ACTIVE' | 'DEPLOYING' | 'ERROR' | 'INACTIVE' | 'DELETED';
 
     /**
-     * Unique function version id
+     * Function version id
      */
-    versionId: string;
+    functionVersionId: string;
 
     /**
-     * List of active instances for this function.
+     * Approximate number of messages in the request queue
      */
-    activeInstances?: Array<Function.ActiveInstance>;
-
-    /**
-     * Invocation request body format
-     */
-    apiBodyFormat?: 'PREDICT_V2' | 'CUSTOM';
-
-    /**
-     * Args used to launch the container
-     */
-    containerArgs?: string;
-
-    /**
-     * Environment settings used to launch the container
-     */
-    containerEnvironment?: Array<Function.ContainerEnvironment>;
-
-    /**
-     * Optional custom container
-     */
-    containerImage?: string;
-
-    /**
-     * Function/version description
-     */
-    description?: string;
-
-    /**
-     * Data Transfer Object(DTO) representing a function ne
-     */
-    health?: Function.Health;
-
-    /**
-     * Optional Helm Chart
-     */
-    helmChart?: string;
-
-    /**
-     * Helm Chart Service Name specified only when helmChart property is specified
-     */
-    helmChartServiceName?: string;
-
-    /**
-     * Optional port number where the inference listener is running - defaults to 8000
-     * for Triton
-     */
-    inferencePort?: number;
-
-    /**
-     * Entrypoint for invoking the container to process requests
-     */
-    inferenceUrl?: string;
-
-    /**
-     * Optional set of models
-     */
-    models?: Array<Function.Model>;
-
-    /**
-     * Indicates whether the function is owned by another account. If the account that
-     * is being used to lookup functions happens to be authorized to invoke/list this
-     * function which is owned by a different account, then this field is set to true
-     * and ncaId will contain the id of the account that owns the function. Otherwise,
-     * this field is not set as it defaults to false.
-     */
-    ownedByDifferentAccount?: boolean;
-
-    /**
-     * Optional set of resources.
-     */
-    resources?: Array<Function.Resource>;
-
-    /**
-     * Optional secret names
-     */
-    secrets?: Array<string>;
-
-    /**
-     * Optional set of tags. Maximum allowed number of tags per function is 64. Maximum
-     * length of each tag is 128 chars.
-     */
-    tags?: Array<string>;
-  }
-
-  export namespace Function {
-    /**
-     * Data Transfer Object(DTO) representing a spot instance
-     */
-    export interface ActiveInstance {
-      /**
-       * Backend where the instance is running
-       */
-      backend?: string;
-
-      /**
-       * Function executing on the instance
-       */
-      functionId?: string;
-
-      /**
-       * Function version executing on the instance
-       */
-      functionVersionId?: string;
-
-      /**
-       * GPU name powering the instance
-       */
-      gpu?: string;
-
-      /**
-       * Instance creation timestamp
-       */
-      instanceCreatedAt?: string;
-
-      /**
-       * Unique id of the instance
-       */
-      instanceId?: string;
-
-      /**
-       * Instance status
-       */
-      instanceStatus?: 'ACTIVE' | 'ERRORED' | 'PREEMPTED' | 'DELETED';
-
-      /**
-       * GPU instance-type powering the instance
-       */
-      instanceType?: string;
-
-      /**
-       * Instance's last updated timestamp
-       */
-      instanceUpdatedAt?: string;
-
-      /**
-       * Location such as zone name or region where the instance is running
-       */
-      location?: string;
-
-      /**
-       * NVIDIA Cloud Account Id that owns the function running on the instance
-       */
-      ncaId?: string;
-
-      /**
-       * SIS request-id used to launch this instance
-       */
-      sisRequestId?: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing a container environment entry
-     */
-    export interface ContainerEnvironment {
-      /**
-       * Container environment key
-       */
-      key: string;
-
-      /**
-       * Container environment value
-       */
-      value: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing a function ne
-     */
-    export interface Health {
-      /**
-       * Expected return status code considered as successful.
-       */
-      expectedStatusCode: number;
-
-      /**
-       * Port number where the health listener is running
-       */
-      port: number;
-
-      /**
-       * HTTP/gPRC protocol type for health endpoint
-       */
-      protocol: 'HTTP' | 'gRPC';
-
-      /**
-       * ISO 8601 duration string in PnDTnHnMn.nS format
-       */
-      timeout: string;
-
-      /**
-       * Health endpoint for the container or the helmChart
-       */
-      uri: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Model {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
-
-    /**
-     * Data Transfer Object(DTO) representing an artifact
-     */
-    export interface Resource {
-      /**
-       * Artifact name
-       */
-      name: string;
-
-      /**
-       * Artifact URI
-       */
-      uri: string;
-
-      /**
-       * Artifact version
-       */
-      version: string;
-    }
+    queueDepth?: number;
   }
 }

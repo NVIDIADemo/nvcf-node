@@ -12,6 +12,6 @@ export class NVCF extends APIResource {
 export namespace NVCF {
   export import Functions = FunctionsAPI.Functions;
   export import FunctionCreateParams = FunctionsAPI.FunctionCreateParams;
-  export import FunctionListParams = FunctionsAPI.FunctionListParams;
+  export import FunctionRetrieveAllParams = FunctionsAPI.FunctionRetrieveAllParams;
   export import Authorizations = AuthorizationsAPI.Authorizations;
 }

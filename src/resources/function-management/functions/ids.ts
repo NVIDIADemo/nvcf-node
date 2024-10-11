@@ -11,14 +11,17 @@ export class IDs extends APIResource {
    * Requires either a bearer token or an api-key with 'list_functions' or
    * 'list_functions_details' scopes in the HTTP Authorization header.
    */
-  list(query?: IDListParams, options?: Core.RequestOptions): Core.APIPromise<ListFunctionIDsResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<ListFunctionIDsResponse>;
-  list(
-    query: IDListParams | Core.RequestOptions = {},
+  retrieveAll(
+    query?: IDRetrieveAllParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<ListFunctionIDsResponse> {
+  ): Core.APIPromise<IDRetrieveAllResponse>;
+  retrieveAll(options?: Core.RequestOptions): Core.APIPromise<IDRetrieveAllResponse>;
+  retrieveAll(
+    query: IDRetrieveAllParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<IDRetrieveAllResponse> {
     if (isRequestOptions(query)) {
-      return this.list({}, query);
+      return this.retrieveAll({}, query);
     }
     return this._client.get('/v2/nvcf/functions/ids', { query, ...options });
   }
@@ -27,14 +30,14 @@ export class IDs extends APIResource {
 /**
  * Response body containing list of function ids in an account
  */
-export interface ListFunctionIDsResponse {
+export interface IDRetrieveAllResponse {
   /**
    * List of function ids
    */
   functionIds: Array<string>;
 }
 
-export interface IDListParams {
+export interface IDRetrieveAllParams {
   /**
    * Query param 'visibility' indicates the kind of functions to be included in the
    * response.
@@ -43,6 +46,6 @@ export interface IDListParams {
 }
 
 export namespace IDs {
-  export import ListFunctionIDsResponse = IDsAPI.ListFunctionIDsResponse;
-  export import IDListParams = IDsAPI.IDListParams;
+  export import IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
+  export import IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
 }

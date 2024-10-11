@@ -16,7 +16,7 @@ export class Versions extends APIResource {
     functionId: string,
     functionVersionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.FunctionResponse> {
+  ): Core.APIPromise<Shared.Function> {
     return this._client.get(`/v2/nvcf/functions/${functionId}/versions/${functionVersionId}`, options);
   }
 
@@ -31,7 +31,7 @@ export class Versions extends APIResource {
     functionVersionId: string,
     body: VersionUpdateParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.FunctionResponse> {
+  ): Core.APIPromise<Shared.Function> {
     return this._client.put(`/v2/nvcf/metadata/functions/${functionId}/versions/${functionVersionId}`, {
       body,
       ...options,

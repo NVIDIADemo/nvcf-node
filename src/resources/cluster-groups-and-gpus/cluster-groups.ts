@@ -11,7 +11,7 @@ export class ClusterGroups extends APIResource {
    * cluster groups such as GFN, OCI, etc. Requires a bearer token with
    * 'list_cluster_groups' scope in HTTP Authorization header.
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ClusterGroupsResponse> {
+  retrieveAll(options?: Core.RequestOptions): Core.APIPromise<ClusterGroupsResponse> {
     return this._client.get('/v2/nvcf/clusterGroups', options);
   }
 }

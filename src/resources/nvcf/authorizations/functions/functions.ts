@@ -10,18 +10,6 @@ export class Functions extends APIResource {
   versions: VersionsAPI.Versions = new VersionsAPI.Versions(this._client);
 
   /**
-   * Lists NVIDIA Cloud Account IDs that are authorized to invoke any version of the
-   * specified function. The response includes an array showing authorized accounts
-   * for each version. Individual versions of a function can have their own
-   * authorized accounts. So, each object in the array can have different authorized
-   * accounts listed. Access to this functionality mandates the inclusion of a bearer
-   * token with the 'authorize_clients' scope in the HTTP Authorization header
-   */
-  list(functionId: string, options?: Core.RequestOptions): Core.APIPromise<ListAuthorizedPartiesResponse> {
-    return this._client.get(`/v2/nvcf/authorizations/functions/${functionId}`, options);
-  }
-
-  /**
    * Deletes all the extra NVIDIA Cloud Accounts that were authorized to invoke the
    * function and all its versions. If a function version has its own set of
    * authorized accounts, those are not deleted. If the specified function is public,
@@ -29,10 +17,7 @@ export class Functions extends APIResource {
    * mandates the inclusion of a bearer token with the 'authorize_clients' scope in
    * the HTTP Authorization header
    */
-  delete(
-    functionId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  delete(functionId: string, options?: Core.RequestOptions): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.delete(`/v2/nvcf/authorizations/functions/${functionId}`, options);
   }
 
@@ -49,8 +34,23 @@ export class Functions extends APIResource {
     functionId: string,
     body: FunctionAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.post(`/v2/nvcf/authorizations/functions/${functionId}`, { body, ...options });
+  }
+
+  /**
+   * Lists NVIDIA Cloud Account IDs that are authorized to invoke any version of the
+   * specified function. The response includes an array showing authorized accounts
+   * for each version. Individual versions of a function can have their own
+   * authorized accounts. So, each object in the array can have different authorized
+   * accounts listed. Access to this functionality mandates the inclusion of a bearer
+   * token with the 'authorize_clients' scope in the HTTP Authorization header
+   */
+  retrieveAll(
+    functionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<ListAuthorizedPartiesResponse> {
+    return this._client.get(`/v2/nvcf/authorizations/functions/${functionId}`, options);
   }
 }
 
@@ -82,29 +82,12 @@ export namespace ListAuthorizedPartiesResponse {
     /**
      * Authorized parties allowed to invoke the function
      */
-    authorizedParties?: Array<Function.AuthorizedParty>;
+    authorizedParties?: Array<Shared.AuthorizedPartyDTO>;
 
     /**
      * Function version id
      */
     versionId?: string;
-  }
-
-  export namespace Function {
-    /**
-     * Data Transfer Object(DTO) representing an authorized party.
-     */
-    export interface AuthorizedParty {
-      /**
-       * NVIDIA Cloud Account authorized to invoke the function
-       */
-      ncaId: string;
-
-      /**
-       * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-       */
-      clientId?: string;
-    }
   }
 }
 
@@ -112,24 +95,7 @@ export interface FunctionAuthorizeParams {
   /**
    * Parties authorized to invoke function
    */
-  authorizedParties: Array<FunctionAuthorizeParams.AuthorizedParty>;
-}
-
-export namespace FunctionAuthorizeParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParties: Array<Shared.AuthorizedPartyDTO>;
 }
 
 export namespace Functions {
