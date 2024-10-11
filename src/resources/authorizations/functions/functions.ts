@@ -23,7 +23,7 @@ export class Functions extends APIResource {
     functionId: string,
     body: FunctionAddParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.patch(`/v2/nvcf/authorizations/functions/${functionId}/add`, { body, ...options });
   }
 
@@ -41,7 +41,7 @@ export class Functions extends APIResource {
     functionId: string,
     body: FunctionRemoveParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.patch(`/v2/nvcf/authorizations/functions/${functionId}/remove`, { body, ...options });
   }
 }
@@ -50,48 +50,14 @@ export interface FunctionAddParams {
   /**
    * Data Transfer Object(DTO) representing an authorized party.
    */
-  authorizedParty: FunctionAddParams.AuthorizedParty;
-}
-
-export namespace FunctionAddParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParty: Shared.AuthorizedPartyDTO;
 }
 
 export interface FunctionRemoveParams {
   /**
    * Data Transfer Object(DTO) representing an authorized party.
    */
-  authorizedParty: FunctionRemoveParams.AuthorizedParty;
-}
-
-export namespace FunctionRemoveParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParty: Shared.AuthorizedPartyDTO;
 }
 
 export namespace Functions {

@@ -22,7 +22,7 @@ export class Versions extends APIResource {
     functionVersionId: string,
     body: VersionAddParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.patch(
       `/v2/nvcf/authorizations/functions/${functionId}/versions/${functionVersionId}/add`,
       { body, ...options },
@@ -46,7 +46,7 @@ export class Versions extends APIResource {
     functionVersionId: string,
     body: VersionRemoveParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.patch(
       `/v2/nvcf/authorizations/functions/${functionId}/versions/${functionVersionId}/remove`,
       { body, ...options },
@@ -58,48 +58,14 @@ export interface VersionAddParams {
   /**
    * Data Transfer Object(DTO) representing an authorized party.
    */
-  authorizedParty: VersionAddParams.AuthorizedParty;
-}
-
-export namespace VersionAddParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParty: Shared.AuthorizedPartyDTO;
 }
 
 export interface VersionRemoveParams {
   /**
    * Data Transfer Object(DTO) representing an authorized party.
    */
-  authorizedParty: VersionRemoveParams.AuthorizedParty;
-}
-
-export namespace VersionRemoveParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParty: Shared.AuthorizedPartyDTO;
 }
 
 export namespace Versions {

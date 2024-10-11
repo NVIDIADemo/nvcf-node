@@ -24,8 +24,8 @@ describe('resource assets', () => {
     const response = await client.assets.create({ contentType: 'contentType', description: 'description' });
   });
 
-  test('list', async () => {
-    const responsePromise = client.assets.list();
+  test('retrieveAll', async () => {
+    const responsePromise = client.assets.retrieveAll();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -35,9 +35,9 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
+  test('retrieveAll: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.assets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.assets.retrieveAll({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       NVCF.NotFoundError,
     );
   });

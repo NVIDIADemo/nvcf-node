@@ -12,11 +12,11 @@ export class Versions extends APIResource {
    * Account Admin cannot perform this operation. Requires a bearer token or an
    * api-key with 'queue_details' scope in the HTTP Authorization header.
    */
-  list(
+  retrieveAll(
     functionId: string,
     versionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.GetQueuesResponse> {
+  ): Core.APIPromise<Shared.Queues> {
     return this._client.get(`/v2/nvcf/queues/functions/${functionId}/versions/${versionId}`, options);
   }
 }
