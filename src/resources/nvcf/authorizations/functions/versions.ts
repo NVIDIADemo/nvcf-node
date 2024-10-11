@@ -17,7 +17,7 @@ export class Versions extends APIResource {
     functionId: string,
     functionVersionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.get(
       `/v2/nvcf/authorizations/functions/${functionId}/versions/${functionVersionId}`,
       options,
@@ -36,7 +36,7 @@ export class Versions extends APIResource {
     functionId: string,
     functionVersionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.delete(
       `/v2/nvcf/authorizations/functions/${functionId}/versions/${functionVersionId}`,
       options,
@@ -57,7 +57,7 @@ export class Versions extends APIResource {
     functionVersionId: string,
     body: VersionAuthorizeParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.AuthorizedPartiesResponse> {
+  ): Core.APIPromise<Shared.AuthorizedParties> {
     return this._client.post(
       `/v2/nvcf/authorizations/functions/${functionId}/versions/${functionVersionId}`,
       { body, ...options },
@@ -69,24 +69,7 @@ export interface VersionAuthorizeParams {
   /**
    * Parties authorized to invoke function
    */
-  authorizedParties: Array<VersionAuthorizeParams.AuthorizedParty>;
-}
-
-export namespace VersionAuthorizeParams {
-  /**
-   * Data Transfer Object(DTO) representing an authorized party.
-   */
-  export interface AuthorizedParty {
-    /**
-     * NVIDIA Cloud Account authorized to invoke the function
-     */
-    ncaId: string;
-
-    /**
-     * Client Id -- 'sub' claim in the JWT. This field should not be specified anymore.
-     */
-    clientId?: string;
-  }
+  authorizedParties: Array<Shared.AuthorizedPartyDTO>;
 }
 
 export namespace Versions {

@@ -3,7 +3,7 @@
 import * as Errors from './error';
 import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
-import * as qs from 'qs';
+import * as qs from './internal/qs';
 import * as Core from './core';
 import * as API from './resources/index';
 
@@ -125,9 +125,9 @@ export class NVCF extends Core.APIClient {
   functionDeployment: API.FunctionDeployment = new API.FunctionDeployment(this);
   functionInvocation: API.FunctionInvocation = new API.FunctionInvocation(this);
   envelopeFunctionInvocation: API.EnvelopeFunctionInvocation = new API.EnvelopeFunctionInvocation(this);
-  nvcf: API.NVCF = new API.NVCF(this);
-  assets: API.Assets = new API.Assets(this);
+  functions: API.Functions = new API.Functions(this);
   authorizations: API.Authorizations = new API.Authorizations(this);
+  assets: API.Assets = new API.Assets(this);
   queues: API.Queues = new API.Queues(this);
   pexec: API.Pexec = new API.Pexec(this);
   clusterGroupsAndGPUs: API.ClusterGroupsAndGPUs = new API.ClusterGroupsAndGPUs(this);
@@ -207,14 +207,16 @@ export namespace NVCF {
 
   export import EnvelopeFunctionInvocation = API.EnvelopeFunctionInvocation;
 
-  export import NVCF = API.NVCF;
+  export import Functions = API.Functions;
+  export import FunctionCreateParams = API.FunctionCreateParams;
+  export import FunctionRetrieveAllParams = API.FunctionRetrieveAllParams;
+
+  export import Authorizations = API.Authorizations;
 
   export import Assets = API.Assets;
   export import CreateAssetResponse = API.CreateAssetResponse;
   export import ListAssetsResponse = API.ListAssetsResponse;
   export import AssetCreateParams = API.AssetCreateParams;
-
-  export import Authorizations = API.Authorizations;
 
   export import Queues = API.Queues;
 
@@ -226,12 +228,15 @@ export namespace NVCF {
 
   export import AssetManagement = API.AssetManagement;
 
-  export import AuthorizedPartiesResponse = API.AuthorizedPartiesResponse;
+  export import AuthorizedParties = API.AuthorizedParties;
+  export import AuthorizedPartyDTO = API.AuthorizedPartyDTO;
   export import CreateFunctionResponse = API.CreateFunctionResponse;
-  export import FunctionResponse = API.FunctionResponse;
-  export import GetQueuesResponse = API.GetQueuesResponse;
+  export import Function = API.Function;
+  export import FunctionDTO = API.FunctionDTO;
+  export import FunctionsResponse = API.FunctionsResponse;
+  export import HealthDTO = API.HealthDTO;
   export import InvokeFunctionResponse = API.InvokeFunctionResponse;
-  export import ListFunctionsResponse = API.ListFunctionsResponse;
+  export import QueuesResponse = API.QueuesResponse;
 }
 
 export default NVCF;

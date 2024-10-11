@@ -25,7 +25,7 @@ export class Versions extends APIResource {
    * 'list_functions' or 'list_functions_details' scopes in the HTTP Authorization
    * header.
    */
-  list(functionId: string, options?: Core.RequestOptions): Core.APIPromise<Shared.ListFunctionsResponse> {
+  retrieveAll(functionId: string, options?: Core.RequestOptions): Core.APIPromise<Shared.FunctionsResponse> {
     return this._client.get(`/v2/nvcf/functions/${functionId}/versions`, options);
   }
 }
@@ -76,7 +76,7 @@ export interface VersionCreateParams {
   /**
    * Data Transfer Object(DTO) representing a function ne
    */
-  health?: VersionCreateParams.Health;
+  health?: Shared.HealthDTO;
 
   /**
    * Health endpoint for the container or the helmChart
@@ -134,36 +134,6 @@ export namespace VersionCreateParams {
      * Container environment value
      */
     value: string;
-  }
-
-  /**
-   * Data Transfer Object(DTO) representing a function ne
-   */
-  export interface Health {
-    /**
-     * Expected return status code considered as successful.
-     */
-    expectedStatusCode: number;
-
-    /**
-     * Port number where the health listener is running
-     */
-    port: number;
-
-    /**
-     * HTTP/gPRC protocol type for health endpoint
-     */
-    protocol: 'HTTP' | 'gRPC';
-
-    /**
-     * ISO 8601 duration string in PnDTnHnMn.nS format
-     */
-    timeout: string;
-
-    /**
-     * Health endpoint for the container or the helmChart
-     */
-    uri: string;
   }
 
   /**

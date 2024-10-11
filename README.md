@@ -11,7 +11,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:stainless-sdks/nvidia-cloud-functions-node.git
+npm install git+ssh://git@github.com:NVIDIADemo/nvcf-node.git
 ```
 
 > [!NOTE]
@@ -30,7 +30,7 @@ const client = new NVCF({
 });
 
 async function main() {
-  const createFunctionResponse = await client.nvcf.functions.create({
+  const createFunctionResponse = await client.functions.create({
     inferenceUrl: 'https://example.com',
     name: 'x',
   });
@@ -54,8 +54,8 @@ const client = new NVCF({
 });
 
 async function main() {
-  const params: NVCF.NVCF.FunctionCreateParams = { inferenceUrl: 'https://example.com', name: 'x' };
-  const createFunctionResponse: NVCF.CreateFunctionResponse = await client.nvcf.functions.create(params);
+  const params: NVCF.FunctionCreateParams = { inferenceUrl: 'https://example.com', name: 'x' };
+  const createFunctionResponse: NVCF.CreateFunctionResponse = await client.functions.create(params);
 }
 
 main();
@@ -72,7 +72,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const createFunctionResponse = await client.nvcf.functions
+  const createFunctionResponse = await client.functions
     .create({ inferenceUrl: 'https://example.com', name: 'x' })
     .catch(async (err) => {
       if (err instanceof NVCF.APIError) {
@@ -117,7 +117,7 @@ const client = new NVCF({
 });
 
 // Or, configure per-request:
-await client.nvcf.functions.create({ inferenceUrl: 'https://example.com', name: 'x' }, {
+await client.functions.create({ inferenceUrl: 'https://example.com', name: 'x' }, {
   maxRetries: 5,
 });
 ```
@@ -134,7 +134,7 @@ const client = new NVCF({
 });
 
 // Override per-request:
-await client.nvcf.functions.create({ inferenceUrl: 'https://example.com', name: 'x' }, {
+await client.functions.create({ inferenceUrl: 'https://example.com', name: 'x' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -155,13 +155,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new NVCF();
 
-const response = await client.nvcf.functions
+const response = await client.functions
   .create({ inferenceUrl: 'https://example.com', name: 'x' })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: createFunctionResponse, response: raw } = await client.nvcf.functions
+const { data: createFunctionResponse, response: raw } = await client.functions
   .create({ inferenceUrl: 'https://example.com', name: 'x' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -228,7 +228,7 @@ import NVCF from 'nvcf';
 ```
 
 To do the inverse, add `import "nvcf/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/nvidia-cloud-functions-node/tree/main/src/_shims#readme)).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/NVIDIADemo/nvcf-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -269,7 +269,7 @@ const client = new NVCF({
 });
 
 // Override per-request:
-await client.nvcf.functions.create(
+await client.functions.create(
   { inferenceUrl: 'https://example.com', name: 'x' },
   {
     httpAgent: new http.Agent({ keepAlive: false }),
@@ -287,7 +287,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/nvidia-cloud-functions-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/NVIDIADemo/nvcf-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
@@ -298,3 +298,7 @@ The following runtimes are supported:
 Note that React Native is not supported at this time.
 
 If you are interested in other runtime environments, please open or upvote an issue on GitHub.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).
