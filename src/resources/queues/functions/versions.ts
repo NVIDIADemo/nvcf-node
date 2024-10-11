@@ -16,7 +16,7 @@ export class Versions extends APIResource {
     functionId: string,
     versionId: string,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Shared.Queues> {
+  ): Core.APIPromise<Shared.QueuesResponse> {
     return this._client.get(`/v2/nvcf/queues/functions/${functionId}/versions/${versionId}`, options);
   }
 }

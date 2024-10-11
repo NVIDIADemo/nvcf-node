@@ -15,7 +15,7 @@ export class Functions extends APIResource {
    * Account Admin cannot perform this operation. Requires a bearer token or an
    * api-key with 'queue_details' scope in the HTTP Authorization header.
    */
-  retrieveAll(functionId: string, options?: Core.RequestOptions): Core.APIPromise<Shared.Queues> {
+  retrieveAll(functionId: string, options?: Core.RequestOptions): Core.APIPromise<Shared.QueuesResponse> {
     return this._client.get(`/v2/nvcf/queues/functions/${functionId}`, options);
   }
 }

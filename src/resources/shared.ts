@@ -406,7 +406,7 @@ export interface InvokeFunctionResponse {
 /**
  * Request queue details of all the functions with same id in an account
  */
-export interface Queues {
+export interface QueuesResponse {
   /**
    * Function id
    */
@@ -415,10 +415,10 @@ export interface Queues {
   /**
    * Details of all the queues associated with same named functions
    */
-  queues: Array<Queues.Queue>;
+  queues: Array<QueuesResponse.Queue>;
 }
 
-export namespace Queues {
+export namespace QueuesResponse {
   /**
    * Data Transfer Object(DTO) representing a request queue for function version
    */

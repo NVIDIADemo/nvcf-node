@@ -234,7 +234,7 @@ export namespace NVCF {
   export import FunctionsResponse = API.FunctionsResponse;
   export import HealthDTO = API.HealthDTO;
   export import InvokeFunctionResponse = API.InvokeFunctionResponse;
-  export import Queues = API.Queues;
+  export import QueuesResponse = API.QueuesResponse;
 }
 
 export default NVCF;
