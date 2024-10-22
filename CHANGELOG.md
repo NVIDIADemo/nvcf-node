@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-10-22)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/NVIDIADemo/nvcf-node/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([#10](https://github.com/NVIDIADemo/nvcf-node/issues/10)) ([fac0b3a](https://github.com/NVIDIADemo/nvcf-node/commit/fac0b3a83dc4375be115f7add1ccdaf4c787094f))
+* **api:** api update ([#12](https://github.com/NVIDIADemo/nvcf-node/issues/12)) ([24878c4](https://github.com/NVIDIADemo/nvcf-node/commit/24878c4db499bbf6c7d249ca26e151c69bacff2f))
+
 ## 0.1.0-alpha.1 (2024-10-11)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/NVIDIADemo/nvcf-node/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
