@@ -67,6 +67,6 @@ export interface StatusRetrieveParams {
 }
 
 export namespace Status {
-  export type StatusRetrieveResponse = StatusAPI.StatusRetrieveResponse;
-  export type StatusRetrieveParams = StatusAPI.StatusRetrieveParams;
+  export import StatusRetrieveResponse = StatusAPI.StatusRetrieveResponse;
+  export import StatusRetrieveParams = StatusAPI.StatusRetrieveParams;
 }

@@ -46,6 +46,6 @@ export interface IDRetrieveAllParams {
 }
 
 export namespace IDs {
-  export type IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
-  export type IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
+  export import IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
+  export import IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
 }

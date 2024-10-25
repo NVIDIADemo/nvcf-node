@@ -12,5 +12,5 @@ export class Queues extends APIResource {
 export namespace Queues {
   export import Functions = FunctionsAPI.Functions;
   export import Position = PositionAPI.Position;
-  export type GetPositionInQueueResponse = PositionAPI.GetPositionInQueueResponse;
+  export import GetPositionInQueueResponse = PositionAPI.GetPositionInQueueResponse;
 }

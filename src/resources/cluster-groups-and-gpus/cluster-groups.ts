@@ -63,5 +63,5 @@ export namespace ClusterGroupsResponse {
 }
 
 export namespace ClusterGroups {
-  export type ClusterGroupsResponse = ClusterGroupsAPI.ClusterGroupsResponse;
+  export import ClusterGroupsResponse = ClusterGroupsAPI.ClusterGroupsResponse;
 }
