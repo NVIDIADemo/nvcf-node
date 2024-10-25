@@ -95,7 +95,7 @@ export interface AssetCreateParams {
 }
 
 export namespace Assets {
-  export import CreateAssetResponse = AssetsAPI.CreateAssetResponse;
-  export import ListAssetsResponse = AssetsAPI.ListAssetsResponse;
-  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export type CreateAssetResponse = AssetsAPI.CreateAssetResponse;
+  export type ListAssetsResponse = AssetsAPI.ListAssetsResponse;
+  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
 }

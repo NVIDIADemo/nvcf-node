@@ -411,8 +411,8 @@ export interface VersionDeleteParams {
 }
 
 export namespace Versions {
-  export import DeploymentResponse = VersionsAPI.DeploymentResponse;
-  export import VersionCreateParams = VersionsAPI.VersionCreateParams;
-  export import VersionUpdateParams = VersionsAPI.VersionUpdateParams;
-  export import VersionDeleteParams = VersionsAPI.VersionDeleteParams;
+  export type DeploymentResponse = VersionsAPI.DeploymentResponse;
+  export type VersionCreateParams = VersionsAPI.VersionCreateParams;
+  export type VersionUpdateParams = VersionsAPI.VersionUpdateParams;
+  export type VersionDeleteParams = VersionsAPI.VersionDeleteParams;
 }

@@ -2,4 +2,4 @@
 
 export { EnvelopeFunctionInvocation } from './envelope-function-invocation';
 export { Exec } from './exec/index';
-export { FunctionInvokeParams, Functions } from './functions/index';
+export { Functions, type FunctionInvokeParams } from './functions/index';

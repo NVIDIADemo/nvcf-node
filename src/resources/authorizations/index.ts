@@ -2,9 +2,9 @@
 
 export { Authorizations } from './authorizations';
 export {
-  ListAuthorizedPartiesResponse,
-  FunctionAddParams,
-  FunctionAuthorizeParams,
-  FunctionRemoveParams,
   Functions,
+  type ListAuthorizedPartiesResponse,
+  type FunctionAddParams,
+  type FunctionAuthorizeParams,
+  type FunctionRemoveParams,
 } from './functions/index';

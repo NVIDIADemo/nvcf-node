@@ -11,8 +11,8 @@ export class Functions extends APIResource {
 
 export namespace Functions {
   export import Versions = VersionsAPI.Versions;
-  export import VersionUpdateParams = VersionsAPI.VersionUpdateParams;
+  export type VersionUpdateParams = VersionsAPI.VersionUpdateParams;
   export import IDs = IDsAPI.IDs;
-  export import IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
-  export import IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
+  export type IDRetrieveAllResponse = IDsAPI.IDRetrieveAllResponse;
+  export type IDRetrieveAllParams = IDsAPI.IDRetrieveAllParams;
 }
