@@ -57,5 +57,5 @@ export namespace AssetResponse {
 }
 
 export namespace Assets {
-  export import AssetResponse = AssetsAPI.AssetResponse;
+  export type AssetResponse = AssetsAPI.AssetResponse;
 }

@@ -85,6 +85,6 @@ export interface VersionInvokeParams {
 }
 
 export namespace Versions {
-  export import VersionInvokeResponse = VersionsAPI.VersionInvokeResponse;
-  export import VersionInvokeParams = VersionsAPI.VersionInvokeParams;
+  export type VersionInvokeResponse = VersionsAPI.VersionInvokeResponse;
+  export type VersionInvokeParams = VersionsAPI.VersionInvokeParams;
 }

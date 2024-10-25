@@ -134,7 +134,7 @@ export interface VersionRemoveParams {
 }
 
 export namespace Versions {
-  export import VersionAddParams = VersionsAPI.VersionAddParams;
-  export import VersionAuthorizeParams = VersionsAPI.VersionAuthorizeParams;
-  export import VersionRemoveParams = VersionsAPI.VersionRemoveParams;
+  export type VersionAddParams = VersionsAPI.VersionAddParams;
+  export type VersionAuthorizeParams = VersionsAPI.VersionAuthorizeParams;
+  export type VersionRemoveParams = VersionsAPI.VersionRemoveParams;
 }
