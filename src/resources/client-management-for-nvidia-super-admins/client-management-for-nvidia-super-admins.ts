@@ -9,5 +9,5 @@ export class ClientManagementForNVIDIASuperAdmins extends APIResource {
 
 export namespace ClientManagementForNVIDIASuperAdmins {
   export import Clients = ClientsAPI.Clients;
-  export import ClientRetrieveResponse = ClientsAPI.ClientRetrieveResponse;
+  export type ClientRetrieveResponse = ClientsAPI.ClientRetrieveResponse;
 }

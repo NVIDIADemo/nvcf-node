@@ -9,6 +9,6 @@ export class FunctionInvocation extends APIResource {
 
 export namespace FunctionInvocation {
   export import Functions = FunctionsAPI.Functions;
-  export import FunctionInvokeResponse = FunctionsAPI.FunctionInvokeResponse;
-  export import FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
+  export type FunctionInvokeResponse = FunctionsAPI.FunctionInvokeResponse;
+  export type FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
 }

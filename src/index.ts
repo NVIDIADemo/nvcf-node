@@ -195,7 +195,7 @@ export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
 export namespace NVCF {
-  export import RequestOptions = Core.RequestOptions;
+  export type RequestOptions = Core.RequestOptions;
 
   export import UserSecretManagement = API.UserSecretManagement;
 
@@ -208,15 +208,15 @@ export namespace NVCF {
   export import EnvelopeFunctionInvocation = API.EnvelopeFunctionInvocation;
 
   export import Functions = API.Functions;
-  export import FunctionCreateParams = API.FunctionCreateParams;
-  export import FunctionRetrieveAllParams = API.FunctionRetrieveAllParams;
+  export type FunctionCreateParams = API.FunctionCreateParams;
+  export type FunctionRetrieveAllParams = API.FunctionRetrieveAllParams;
 
   export import Authorizations = API.Authorizations;
 
   export import Assets = API.Assets;
-  export import CreateAssetResponse = API.CreateAssetResponse;
-  export import ListAssetsResponse = API.ListAssetsResponse;
-  export import AssetCreateParams = API.AssetCreateParams;
+  export type CreateAssetResponse = API.CreateAssetResponse;
+  export type ListAssetsResponse = API.ListAssetsResponse;
+  export type AssetCreateParams = API.AssetCreateParams;
 
   export import Queues = API.Queues;
 
@@ -228,15 +228,15 @@ export namespace NVCF {
 
   export import AssetManagement = API.AssetManagement;
 
-  export import AuthorizedParties = API.AuthorizedParties;
-  export import AuthorizedPartyDTO = API.AuthorizedPartyDTO;
-  export import CreateFunctionResponse = API.CreateFunctionResponse;
-  export import Function = API.Function;
-  export import FunctionDTO = API.FunctionDTO;
-  export import FunctionsResponse = API.FunctionsResponse;
-  export import HealthDTO = API.HealthDTO;
-  export import InvokeFunctionResponse = API.InvokeFunctionResponse;
-  export import QueuesResponse = API.QueuesResponse;
+  export type AuthorizedParties = API.AuthorizedParties;
+  export type AuthorizedPartyDTO = API.AuthorizedPartyDTO;
+  export type CreateFunctionResponse = API.CreateFunctionResponse;
+  export type Function = API.Function;
+  export type FunctionDTO = API.FunctionDTO;
+  export type FunctionsResponse = API.FunctionsResponse;
+  export type HealthDTO = API.HealthDTO;
+  export type InvokeFunctionResponse = API.InvokeFunctionResponse;
+  export type QueuesResponse = API.QueuesResponse;
 }
 
 export default NVCF;

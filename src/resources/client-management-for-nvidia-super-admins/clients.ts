@@ -48,5 +48,5 @@ export namespace ClientRetrieveResponse {
 }
 
 export namespace Clients {
-  export import ClientRetrieveResponse = ClientsAPI.ClientRetrieveResponse;
+  export type ClientRetrieveResponse = ClientsAPI.ClientRetrieveResponse;
 }
