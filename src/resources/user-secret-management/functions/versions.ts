@@ -49,5 +49,5 @@ export namespace VersionUpdateParams {
 }
 
 export namespace Versions {
-  export type VersionUpdateParams = VersionsAPI.VersionUpdateParams;
+  export import VersionUpdateParams = VersionsAPI.VersionUpdateParams;
 }

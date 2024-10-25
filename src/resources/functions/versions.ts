@@ -193,5 +193,5 @@ export namespace VersionCreateParams {
 }
 
 export namespace Versions {
-  export type VersionCreateParams = VersionsAPI.VersionCreateParams;
+  export import VersionCreateParams = VersionsAPI.VersionCreateParams;
 }

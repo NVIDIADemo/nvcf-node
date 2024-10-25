@@ -11,6 +11,6 @@ export class EnvelopeFunctionInvocation extends APIResource {
 
 export namespace EnvelopeFunctionInvocation {
   export import Functions = FunctionsAPI.Functions;
-  export type FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
+  export import FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
   export import Exec = ExecAPI.Exec;
 }

@@ -214,8 +214,8 @@ export interface FunctionRetrieveAllParams {
 }
 
 export namespace Functions {
-  export type FunctionCreateParams = FunctionsAPI.FunctionCreateParams;
-  export type FunctionRetrieveAllParams = FunctionsAPI.FunctionRetrieveAllParams;
+  export import FunctionCreateParams = FunctionsAPI.FunctionCreateParams;
+  export import FunctionRetrieveAllParams = FunctionsAPI.FunctionRetrieveAllParams;
   export import Versions = VersionsAPI.Versions;
-  export type VersionCreateParams = VersionsAPI.VersionCreateParams;
+  export import VersionCreateParams = VersionsAPI.VersionCreateParams;
 }
