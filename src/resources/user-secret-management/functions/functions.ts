@@ -9,5 +9,5 @@ export class Functions extends APIResource {
 
 export namespace Functions {
   export import Versions = VersionsAPI.Versions;
-  export type VersionUpdateParams = VersionsAPI.VersionUpdateParams;
+  export import VersionUpdateParams = VersionsAPI.VersionUpdateParams;
 }

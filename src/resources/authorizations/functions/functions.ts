@@ -149,12 +149,12 @@ export interface FunctionRemoveParams {
 }
 
 export namespace Functions {
-  export type ListAuthorizedPartiesResponse = FunctionsAPI.ListAuthorizedPartiesResponse;
-  export type FunctionAddParams = FunctionsAPI.FunctionAddParams;
-  export type FunctionAuthorizeParams = FunctionsAPI.FunctionAuthorizeParams;
-  export type FunctionRemoveParams = FunctionsAPI.FunctionRemoveParams;
+  export import ListAuthorizedPartiesResponse = FunctionsAPI.ListAuthorizedPartiesResponse;
+  export import FunctionAddParams = FunctionsAPI.FunctionAddParams;
+  export import FunctionAuthorizeParams = FunctionsAPI.FunctionAuthorizeParams;
+  export import FunctionRemoveParams = FunctionsAPI.FunctionRemoveParams;
   export import Versions = VersionsAPI.Versions;
-  export type VersionAddParams = VersionsAPI.VersionAddParams;
-  export type VersionAuthorizeParams = VersionsAPI.VersionAuthorizeParams;
-  export type VersionRemoveParams = VersionsAPI.VersionRemoveParams;
+  export import VersionAddParams = VersionsAPI.VersionAddParams;
+  export import VersionAuthorizeParams = VersionsAPI.VersionAuthorizeParams;
+  export import VersionRemoveParams = VersionsAPI.VersionRemoveParams;
 }

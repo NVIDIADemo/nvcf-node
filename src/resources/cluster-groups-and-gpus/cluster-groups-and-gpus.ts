@@ -9,5 +9,5 @@ export class ClusterGroupsAndGPUs extends APIResource {
 
 export namespace ClusterGroupsAndGPUs {
   export import ClusterGroups = ClusterGroupsAPI.ClusterGroups;
-  export type ClusterGroupsResponse = ClusterGroupsAPI.ClusterGroupsResponse;
+  export import ClusterGroupsResponse = ClusterGroupsAPI.ClusterGroupsResponse;
 }

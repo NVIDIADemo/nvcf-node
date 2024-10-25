@@ -36,5 +36,5 @@ export interface GetPositionInQueueResponse {
 }
 
 export namespace Position {
-  export type GetPositionInQueueResponse = PositionAPI.GetPositionInQueueResponse;
+  export import GetPositionInQueueResponse = PositionAPI.GetPositionInQueueResponse;
 }

@@ -9,6 +9,6 @@ export class Pexec extends APIResource {
 
 export namespace Pexec {
   export import Status = StatusAPI.Status;
-  export type StatusRetrieveResponse = StatusAPI.StatusRetrieveResponse;
-  export type StatusRetrieveParams = StatusAPI.StatusRetrieveParams;
+  export import StatusRetrieveResponse = StatusAPI.StatusRetrieveResponse;
+  export import StatusRetrieveParams = StatusAPI.StatusRetrieveParams;
 }

@@ -9,5 +9,5 @@ export class AssetManagement extends APIResource {
 
 export namespace AssetManagement {
   export import Assets = AssetsAPI.Assets;
-  export type AssetResponse = AssetsAPI.AssetResponse;
+  export import AssetResponse = AssetsAPI.AssetResponse;
 }

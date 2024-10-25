@@ -87,7 +87,7 @@ export namespace FunctionInvokeParams {
 }
 
 export namespace Functions {
-  export type FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
+  export import FunctionInvokeParams = FunctionsAPI.FunctionInvokeParams;
   export import Versions = VersionsAPI.Versions;
-  export type VersionInvokeParams = VersionsAPI.VersionInvokeParams;
+  export import VersionInvokeParams = VersionsAPI.VersionInvokeParams;
 }
