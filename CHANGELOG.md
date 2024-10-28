@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-10-28)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/NVIDIADemo/nvcf-node/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([#10](https://github.com/NVIDIADemo/nvcf-node/issues/10)) ([fac0b3a](https://github.com/NVIDIADemo/nvcf-node/commit/fac0b3a83dc4375be115f7add1ccdaf4c787094f))
+* **api:** api update ([#12](https://github.com/NVIDIADemo/nvcf-node/issues/12)) ([24878c4](https://github.com/NVIDIADemo/nvcf-node/commit/24878c4db499bbf6c7d249ca26e151c69bacff2f))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#13](https://github.com/NVIDIADemo/nvcf-node/issues/13)) ([06fb280](https://github.com/NVIDIADemo/nvcf-node/commit/06fb280d0232b2c39d713b43ba2a278ca1175d7a))
+* rebuild project due to codegen change ([#14](https://github.com/NVIDIADemo/nvcf-node/issues/14)) ([b72e35d](https://github.com/NVIDIADemo/nvcf-node/commit/b72e35df3867096db7b109ce62507079b099bab4))
+* rebuild project due to codegen change ([#15](https://github.com/NVIDIADemo/nvcf-node/issues/15)) ([78ab425](https://github.com/NVIDIADemo/nvcf-node/commit/78ab42589f8ce952ab792722f731bab1585a5a6a))
+
 ## 0.1.0-alpha.1 (2024-10-11)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/NVIDIADemo/nvcf-node/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
