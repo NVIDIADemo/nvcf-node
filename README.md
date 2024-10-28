@@ -30,12 +30,9 @@ const client = new NVCF({
 });
 
 async function main() {
-  const createFunctionResponse = await client.functions.create({
-    inferenceUrl: 'https://example.com',
-    name: 'x',
-  });
+  const functionDTO = await client.functions.create({ inferenceUrl: 'https://example.com', name: 'x' });
 
-  console.log(createFunctionResponse.function);
+  console.log(functionDTO.id);
 }
 
 main();
@@ -55,7 +52,7 @@ const client = new NVCF({
 
 async function main() {
   const params: NVCF.FunctionCreateParams = { inferenceUrl: 'https://example.com', name: 'x' };
-  const createFunctionResponse: NVCF.CreateFunctionResponse = await client.functions.create(params);
+  const functionDTO: NVCF.FunctionDTO = await client.functions.create(params);
 }
 
 main();
@@ -72,7 +69,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const createFunctionResponse = await client.functions
+  const functionDTO = await client.functions
     .create({ inferenceUrl: 'https://example.com', name: 'x' })
     .catch(async (err) => {
       if (err instanceof NVCF.APIError) {
@@ -161,11 +158,11 @@ const response = await client.functions
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: createFunctionResponse, response: raw } = await client.functions
+const { data: functionDTO, response: raw } = await client.functions
   .create({ inferenceUrl: 'https://example.com', name: 'x' })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(createFunctionResponse.function);
+console.log(functionDTO.id);
 ```
 
 ### Making custom/undocumented requests

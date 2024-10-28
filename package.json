@@ -1,6 +1,6 @@
 {
   "name": "nvcf",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "The official TypeScript library for the NVCF API",
   "author": "NVCF <dev-feedback@nvidia.com>",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "files": [
-    "*"
+    "**/*"
   ],
   "private": false,
   "scripts": {
